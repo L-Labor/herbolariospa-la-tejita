@@ -627,20 +627,29 @@ function Index() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            {team.map((m) => (
-              <div key={m.name} className="flex flex-col rounded-lg bg-card p-6">
-                <div className="flex aspect-[4/5] w-full items-center justify-center rounded-md bg-secondary">
-                  <span className="font-display text-7xl text-primary/85">{m.initials}</span>
-                </div>
-                <div className="mt-6 flex items-end justify-between">
-                  <div>
-                    <h3 className="text-2xl">{m.name}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{t(m.roleKey)}</p>
+            {team.map((m) => {
+              const Icon = m.icon;
+              return (
+                <div key={m.name} className="flex flex-col rounded-lg bg-card p-6">
+                  <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-md bg-secondary">
+                    {/* Cohesive coral tint overlay so all portraits feel unified */}
+                    <div className="absolute inset-0 bg-[linear-gradient(160deg,oklch(0.68_0.16_35/0.10),oklch(0.34_0.04_220/0.06))]" />
+                    <span className="relative font-display text-7xl text-primary/85">{m.initials}</span>
                   </div>
-                  <span className="h-2 w-2 rounded-full bg-accent" />
+                  <div className="mt-6 flex items-end justify-between gap-4">
+                    <div>
+                      <h3 className="text-2xl">{m.name}</h3>
+                      <div className="mt-2 inline-flex items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                        <Icon className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                        {m.specialty}
+                      </div>
+                      <p className="mt-3 text-sm text-muted-foreground">{t(m.roleKey)}</p>
+                    </div>
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
