@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Leaf,
   Sparkles,
@@ -14,6 +14,10 @@ import {
   Info,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
+  Menu,
+  X,
+  Globe,
 } from "lucide-react";
 import heroImg from "@/assets/hero-spa.jpg";
 import productAloe from "@/assets/product-aloe.jpg";
@@ -55,7 +59,8 @@ const T: Record<Lang, Record<string, string>> = {
     nav_team: "Equipo",
     nav_gallery: "Galería",
     nav_contact: "Contacto",
-    book: "Reservar Cita",
+    book: "Reservar",
+    book_full: "Reservar Cita",
     hero_eyebrow: "Bienestar & Belleza — Tenerife",
     hero_title: "Tu bienestar natural en La Tejita.",
     hero_sub:
@@ -111,7 +116,8 @@ const T: Record<Lang, Record<string, string>> = {
     nav_team: "Team",
     nav_gallery: "Gallery",
     nav_contact: "Contact",
-    book: "Book Now",
+    book: "Book",
+    book_full: "Book Now",
     hero_eyebrow: "Wellness & Beauty — Tenerife",
     hero_title: "Your natural wellness in La Tejita.",
     hero_sub:
@@ -168,6 +174,7 @@ const T: Record<Lang, Record<string, string>> = {
     nav_gallery: "Galleria",
     nav_contact: "Contatti",
     book: "Prenota",
+    book_full: "Prenota Ora",
     hero_eyebrow: "Benessere & Bellezza — Tenerife",
     hero_title: "Il tuo benessere naturale a La Tejita.",
     hero_sub:
@@ -223,7 +230,8 @@ const T: Record<Lang, Record<string, string>> = {
     nav_team: "Team",
     nav_gallery: "Galerie",
     nav_contact: "Kontakt",
-    book: "Termin buchen",
+    book: "Buchen",
+    book_full: "Termin buchen",
     hero_eyebrow: "Wellness & Schönheit — Teneriffa",
     hero_title: "Dein natürliches Wohlbefinden in La Tejita.",
     hero_sub:
@@ -299,125 +307,207 @@ const team = [
 
 const galleryImgs = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
 
+const NAV_ITEMS: Array<[string, string]> = [
+  ["nav_services", "#servicios"],
+  ["nav_shop", "#tienda"],
+  ["nav_team", "#equipo"],
+  ["nav_gallery", "#galeria"],
+  ["nav_contact", "#contacto"],
+];
+
 function Index() {
   const [lang, setLang] = useState<Lang>("ES");
   const [slide, setSlide] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
   const t = (k: string) => T[lang][k] ?? k;
 
   const visibleSlides = 3;
   const maxSlide = Math.max(0, galleryImgs.length - visibleSlides);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center bg-primary text-primary-foreground">
+      {/* Sticky Header */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled || menuOpen
+            ? "bg-background/90 shadow-[0_1px_0_0_var(--border),0_8px_24px_-16px_rgba(38,70,83,0.18)] backdrop-blur"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 md:px-8">
+          <a href="#top" className="flex items-center gap-2.5">
+            <span className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
               <Leaf className="h-4 w-4" strokeWidth={1.5} />
             </span>
-            <span className="text-sm font-medium tracking-tight">
+            <span className="text-[13px] font-medium tracking-tight md:text-sm">
               Herbolario Spa <span className="text-muted-foreground">La Tejita</span>
             </span>
           </a>
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {[
-              ["nav_services", "#servicios"],
-              ["nav_shop", "#tienda"],
-              ["nav_team", "#equipo"],
-              ["nav_gallery", "#galeria"],
-              ["nav_contact", "#contacto"],
-            ].map(([key, href]) => (
+          <nav className="hidden items-center gap-9 lg:flex">
+            {NAV_ITEMS.map(([key, href]) => (
               <a
                 key={key}
                 href={href}
-                className="text-sm text-foreground/70 transition-colors hover:text-foreground"
+                className="text-sm text-foreground/75 transition-colors hover:text-foreground"
               >
                 {t(key)}
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden items-center divide-x divide-border border border-border sm:flex">
-              {LANGS.map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  aria-label={`Idioma ${l}`}
-                  className={`px-2.5 py-1.5 text-[11px] font-medium tracking-widest transition-colors ${
-                    lang === l
-                      ? "bg-foreground text-background"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+          <div className="flex items-center gap-2">
+            {/* Language dropdown */}
+            <div ref={langRef} className="relative">
+              <button
+                type="button"
+                onClick={() => setLangOpen((o) => !o)}
+                className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-[11px] font-medium tracking-widest text-foreground/70 hover:text-foreground"
+                aria-haspopup="listbox"
+                aria-expanded={langOpen}
+              >
+                <Globe className="h-3.5 w-3.5" strokeWidth={1.5} />
+                {lang}
+                <ChevronDown className="h-3 w-3" strokeWidth={1.5} />
+              </button>
+              {langOpen && (
+                <div
+                  role="listbox"
+                  className="absolute right-0 mt-2 min-w-[80px] overflow-hidden rounded-md border border-border bg-card shadow-lg"
                 >
-                  {l}
-                </button>
-              ))}
+                  {LANGS.map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => {
+                        setLang(l);
+                        setLangOpen(false);
+                      }}
+                      className={`block w-full px-3 py-2 text-left text-[11px] font-medium tracking-widest transition-colors ${
+                        lang === l
+                          ? "bg-secondary text-foreground"
+                          : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
+                      }`}
+                    >
+                      {l}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
+
             <a
               href={FRESHA}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              className="hidden items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:inline-flex md:px-4 md:py-2.5 md:text-sm"
             >
-              {t("book")}
-              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              <span className="hidden md:inline">{t("book_full")}</span>
+              <span className="md:hidden">{t("book")}</span>
+              <ArrowUpRight className="h-3.5 w-3.5 md:h-4 md:w-4" strokeWidth={1.5} />
             </a>
+
+            {/* Hamburger */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((o) => !o)}
+              className="grid h-9 w-9 place-items-center rounded-md text-foreground hover:bg-secondary lg:hidden"
+              aria-label="Menú"
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
+            </button>
           </div>
         </div>
 
-        {/* Mobile language selector */}
-        <div className="flex items-center justify-center gap-2 border-t border-border py-2 sm:hidden">
-          {LANGS.map((l) => (
-            <button
-              key={l}
-              type="button"
-              onClick={() => setLang(l)}
-              className={`border border-border px-2.5 py-1 text-[11px] font-medium tracking-widest ${
-                lang === l ? "bg-foreground text-background" : "text-muted-foreground"
-              }`}
+        {/* Mobile menu */}
+        <div
+          className={`overflow-hidden border-t border-border bg-background/95 backdrop-blur transition-all duration-300 lg:hidden ${
+            menuOpen ? "max-h-[80vh] opacity-100" : "pointer-events-none max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-6">
+            {NAV_ITEMS.map(([key, href]) => (
+              <a
+                key={key}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-md px-2 py-3 text-base text-foreground/85 hover:bg-secondary"
+              >
+                {t(key)}
+              </a>
+            ))}
+            <a
+              href={FRESHA}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-medium text-primary-foreground sm:hidden"
             >
-              {l}
-            </button>
-          ))}
+              {t("book_full")}
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
+          </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section id="top" className="border-b border-border">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:py-28 lg:grid-cols-12 lg:gap-16">
+      <section id="top" className="pt-24 md:pt-28">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-8 md:px-8 md:pb-32 md:pt-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <div className="mb-8 inline-flex items-center gap-3 border border-border px-3 py-1.5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1.5 w-1.5 bg-accent" />
+            <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {t("hero_eyebrow")}
             </div>
-            <h1 className="text-balance text-5xl leading-[1.05] md:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.05] lg:text-7xl">
               {t("hero_title")}
             </h1>
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <p className="mt-7 max-w-xl text-[15px] leading-[1.7] text-muted-foreground md:text-lg md:leading-relaxed">
               {t("hero_sub")}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
               <a
                 href="#servicios"
-                className="inline-flex items-center gap-2 bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
               >
                 {t("hero_cta")}
                 <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
               </a>
               <a
                 href="#equipo"
-                className="text-sm font-medium underline underline-offset-4 decoration-border hover:decoration-foreground"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground hover:bg-secondary sm:w-auto"
               >
                 {t("hero_team")}
               </a>
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden border border-border">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-lg">
               <img
                 src={heroImg}
                 alt="Composición geométrica con piedras y hojas que evoca la calma del spa"
@@ -431,37 +521,39 @@ function Index() {
       </section>
 
       {/* Services */}
-      <section id="servicios" className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <section id="servicios" className="bg-secondary/50">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {t("services_kicker")}
               </div>
-              <h2 className="text-4xl md:text-5xl">{t("services_title")}</h2>
+              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("services_title")}
+              </h2>
             </div>
-            <p className="text-muted-foreground md:col-span-5">{t("services_lead")}</p>
+            <p className="text-[15px] leading-relaxed text-muted-foreground md:col-span-5">
+              {t("services_lead")}
+            </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 border border-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {services.map(({ icon: Icon, key }, i) => (
               <article
                 key={key}
-                className={`group relative flex flex-col gap-6 bg-card p-8 transition-colors hover:bg-secondary ${
-                  i < services.length - 1 ? "border-b border-border lg:border-b-0 lg:border-r" : ""
-                } ${i % 2 === 0 ? "sm:border-r sm:border-border" : ""}`}
+                className="group flex flex-col gap-6 rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
               >
                 <div className="flex items-center justify-between">
-                  <span className="grid h-11 w-11 place-items-center border border-border bg-background">
+                  <span className="grid h-11 w-11 place-items-center rounded-md bg-secondary text-accent">
                     <Icon className="h-5 w-5" strokeWidth={1.4} />
                   </span>
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                  <span className="text-[11px] uppercase tracking-widest text-muted-foreground">
                     0{i + 1}
                   </span>
                 </div>
                 <div>
                   <h3 className="text-xl">{t(`${key}_title`)}</h3>
-                  <div className="mt-2 text-sm text-accent-foreground/80">{t(`${key}_price`)}</div>
+                  <div className="mt-2 text-sm text-accent">{t(`${key}_price`)}</div>
                 </div>
                 <p className="text-sm leading-relaxed text-muted-foreground">{t(`${key}_desc`)}</p>
               </article>
@@ -471,25 +563,29 @@ function Index() {
       </section>
 
       {/* Shop */}
-      <section id="tienda" className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <section id="tienda">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
-              <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {t("shop_kicker")}
               </div>
-              <h2 className="text-4xl md:text-5xl">{t("shop_title")}</h2>
+              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("shop_title")}
+              </h2>
             </div>
-            <p className="text-muted-foreground md:col-span-5">{t("shop_lead")}</p>
+            <p className="text-[15px] leading-relaxed text-muted-foreground md:col-span-5">
+              {t("shop_lead")}
+            </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((p) => (
               <article
                 key={p.key}
-                className="group flex flex-col border border-border bg-background"
+                className="group flex flex-col overflow-hidden rounded-lg bg-card transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
               >
-                <div className="aspect-square overflow-hidden border-b border-border bg-secondary">
+                <div className="aspect-square overflow-hidden bg-secondary">
                   <img
                     src={p.img}
                     alt={t(p.key)}
@@ -499,13 +595,13 @@ function Index() {
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex flex-1 flex-col gap-4 p-6">
+                <div className="flex flex-1 flex-col gap-4 p-5">
                   <h3 className="text-base leading-snug">{t(p.key)}</h3>
                   <div className="mt-auto flex items-end justify-between gap-4">
-                    <span className="font-display text-2xl">{p.price}</span>
+                    <span className="font-display text-2xl text-foreground">{p.price}</span>
                     <button
                       type="button"
-                      className="inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs uppercase tracking-widest hover:bg-foreground hover:text-background"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-2 text-[11px] font-medium uppercase tracking-widest text-accent-foreground transition-opacity hover:opacity-90"
                     >
                       <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
                       {t("shop_cta")}
@@ -519,27 +615,29 @@ function Index() {
       </section>
 
       {/* Team */}
-      <section id="equipo" className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <section id="equipo" className="bg-secondary/50">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="mb-14 max-w-2xl">
-            <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               {t("team_kicker")}
             </div>
-            <h2 className="text-4xl md:text-5xl">{t("team_title")}</h2>
+            <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+              {t("team_title")}
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-px bg-border md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {team.map((m) => (
-              <div key={m.name} className="flex flex-col bg-background p-8">
-                <div className="flex aspect-[4/5] w-full items-center justify-center bg-secondary">
-                  <span className="font-display text-7xl text-primary/80">{m.initials}</span>
+              <div key={m.name} className="flex flex-col rounded-lg bg-card p-6">
+                <div className="flex aspect-[4/5] w-full items-center justify-center rounded-md bg-secondary">
+                  <span className="font-display text-7xl text-primary/85">{m.initials}</span>
                 </div>
                 <div className="mt-6 flex items-end justify-between">
                   <div>
                     <h3 className="text-2xl">{m.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{t(m.roleKey)}</p>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{t(m.roleKey)}</p>
                   </div>
-                  <span className="h-2 w-2 bg-accent" />
+                  <span className="h-2 w-2 rounded-full bg-accent" />
                 </div>
               </div>
             ))}
@@ -548,15 +646,17 @@ function Index() {
       </section>
 
       {/* Gallery */}
-      <section id="galeria" className="border-b border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <section id="galeria">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <div className="mb-4 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {t("gallery_kicker")}
               </div>
-              <h2 className="text-4xl md:text-5xl">{t("gallery_title")}</h2>
-              <p className="mt-4 text-muted-foreground">{t("gallery_lead")}</p>
+              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("gallery_title")}
+              </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{t("gallery_lead")}</p>
             </div>
             <div className="hidden items-center gap-2 md:flex">
               <button
@@ -564,7 +664,7 @@ function Index() {
                 onClick={() => setSlide((s) => Math.max(0, s - 1))}
                 disabled={slide === 0}
                 aria-label="Anterior"
-                className="grid h-10 w-10 place-items-center border border-border bg-background hover:bg-foreground hover:text-background disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-foreground"
+                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-card hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-card disabled:hover:text-foreground"
               >
                 <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
               </button>
@@ -573,7 +673,7 @@ function Index() {
                 onClick={() => setSlide((s) => Math.min(maxSlide, s + 1))}
                 disabled={slide === maxSlide}
                 aria-label="Siguiente"
-                className="grid h-10 w-10 place-items-center border border-border bg-background hover:bg-foreground hover:text-background disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-foreground"
+                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-card hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-card disabled:hover:text-foreground"
               >
                 <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
               </button>
@@ -587,12 +687,8 @@ function Index() {
               style={{ transform: `translateX(calc(-${slide} * (100% / 3 + 8px)))` }}
             >
               {galleryImgs.map((src, i) => (
-                <div
-                  key={i}
-                  className="shrink-0 pr-2"
-                  style={{ width: "calc(100% / 3)" }}
-                >
-                  <div className="aspect-[4/5] overflow-hidden border border-border bg-background">
+                <div key={i} className="shrink-0 pr-2" style={{ width: "calc(100% / 3)" }}>
+                  <div className="aspect-[4/5] overflow-hidden rounded-lg bg-card">
                     <img
                       src={src}
                       alt={`Trabajo ${i + 1}`}
@@ -610,7 +706,7 @@ function Index() {
           {/* Mobile grid */}
           <div className="mt-10 grid grid-cols-2 gap-3 md:hidden">
             {galleryImgs.map((src, i) => (
-              <div key={i} className="aspect-[4/5] overflow-hidden border border-border bg-background">
+              <div key={i} className="aspect-[4/5] overflow-hidden rounded-md bg-card">
                 <img
                   src={src}
                   alt={`Trabajo ${i + 1}`}
@@ -627,34 +723,38 @@ function Index() {
 
       {/* Footer / Contact */}
       <footer id="contacto" className="bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
-          <div className="grid gap-12 lg:grid-cols-12">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-28">
+          <div className="grid gap-14 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <div className="mb-4 text-xs uppercase tracking-[0.18em] text-primary-foreground/60">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-primary-foreground/60">
                 {t("contact_kicker")}
               </div>
-              <h2 className="text-4xl text-primary-foreground md:text-5xl">{t("contact_title")}</h2>
-              <p className="mt-6 max-w-md text-primary-foreground/70">{t("contact_lead")}</p>
+              <h2 className="text-[2rem] leading-[1.2] text-primary-foreground sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("contact_title")}
+              </h2>
+              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-primary-foreground/75">
+                {t("contact_lead")}
+              </p>
               <a
                 href={FRESHA}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-10 inline-flex items-center gap-2 bg-background px-6 py-3.5 text-sm font-medium text-foreground transition-opacity hover:opacity-90"
+                className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent px-6 py-3.5 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90 sm:w-auto"
               >
-                {t("book")}
+                {t("book_full")}
                 <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
               </a>
             </div>
 
             <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
               <div>
-                <MapPin className="h-5 w-5" strokeWidth={1.4} />
+                <MapPin className="h-5 w-5 text-accent" strokeWidth={1.5} />
                 <h3 className="mt-4 text-base text-primary-foreground">{t("addr_label")}</h3>
                 <a
                   href={MAPS}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 block text-sm leading-relaxed text-primary-foreground/70 underline-offset-4 hover:text-primary-foreground hover:underline"
+                  className="mt-3 block text-sm leading-relaxed text-primary-foreground/75 underline-offset-4 hover:text-primary-foreground hover:underline"
                 >
                   C. Hernán Cortés, 2, Local 28<br />
                   C.C. La Tejita Street Market<br />
@@ -662,19 +762,19 @@ function Index() {
                 </a>
               </div>
               <div>
-                <Phone className="h-5 w-5" strokeWidth={1.4} />
+                <Phone className="h-5 w-5 text-accent" strokeWidth={1.5} />
                 <h3 className="mt-4 text-base text-primary-foreground">{t("phone_label")}</h3>
                 <a
                   href="tel:+34641948530"
-                  className="mt-3 block text-sm text-primary-foreground/70 hover:text-primary-foreground"
+                  className="mt-3 block text-sm text-primary-foreground/75 hover:text-primary-foreground"
                 >
                   +34 641 94 85 30
                 </a>
               </div>
               <div>
-                <Clock className="h-5 w-5" strokeWidth={1.4} />
+                <Clock className="h-5 w-5 text-accent" strokeWidth={1.5} />
                 <h3 className="mt-4 text-base text-primary-foreground">{t("hours_label")}</h3>
-                <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-primary-foreground/70">
+                <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-primary-foreground/75">
                   {t("hours_value")}
                 </p>
               </div>
@@ -686,7 +786,7 @@ function Index() {
             <p className="max-w-3xl leading-relaxed">{t("ai_note")}</p>
           </div>
 
-          <div className="mt-8 flex flex-col items-start justify-between gap-4 text-xs text-primary-foreground/50 sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-start justify-between gap-4 text-xs text-primary-foreground/55 sm:flex-row sm:items-center">
             <span>
               © {new Date().getFullYear()} Herbolario Spa La Tejita. {t("rights")}
             </span>
