@@ -300,9 +300,9 @@ const services = [
 ];
 
 const team = [
-  { name: "Gloria", roleKey: "role_gloria", initials: "GL" },
-  { name: "Roberto", roleKey: "role_roberto", initials: "RB" },
-  { name: "Irina", roleKey: "role_irina", initials: "IR" },
+  { name: "Gloria", roleKey: "role_gloria", initials: "GL", icon: Sparkles, specialty: "Nails & Beauty" },
+  { name: "Roberto", roleKey: "role_roberto", initials: "RB", icon: Hand, specialty: "Therapy" },
+  { name: "Irina", roleKey: "role_irina", initials: "IR", icon: Flower2, specialty: "Aesthetics" },
 ];
 
 const galleryImgs = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
