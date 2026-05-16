@@ -477,7 +477,6 @@ const reviews = [
 
 function Index() {
   const [lang, setLang] = useState<Lang>("ES");
-  const [lang, setLang] = useState<Lang>("ES");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
