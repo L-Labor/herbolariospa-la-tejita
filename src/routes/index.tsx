@@ -318,7 +318,7 @@ const team = [
   { name: "Irina", roleKey: "role_irina", initials: "IR", icon: Flower2, specialty: "Aesthetics" },
 ];
 
-const galleryImgs = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
+
 
 const NAV_ITEMS: Array<[string, string]> = [
   ["nav_services", "#servicios"],
