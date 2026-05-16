@@ -481,11 +481,13 @@ function Index() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [irinaOpen, setIrinaOpen] = useState(false);
+  const [reviewIdx, setReviewIdx] = useState(0);
   const langRef = useRef<HTMLDivElement>(null);
-  const t = (k: string) => T[lang][k] ?? k;
+  const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? k;
 
   const visibleSlides = 3;
-  const maxSlide = Math.max(0, galleryImgs.length - visibleSlides);
+  const maxSlide = Math.max(0, portfolio.length - visibleSlides);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
