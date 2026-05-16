@@ -18,7 +18,16 @@ import {
   Menu,
   X,
   Globe,
+  Star,
+  Quote,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import heroImg from "@/assets/hero-spa.jpg";
 import productAloe from "@/assets/product-aloe.jpg";
 import productMoringa from "@/assets/product-moringa.jpg";
@@ -30,6 +39,10 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import nail1 from "@/assets/nail-1.jpg";
+import nail2 from "@/assets/nail-2.jpg";
+import nail3 from "@/assets/nail-3.jpg";
+import nail4 from "@/assets/nail-4.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -305,27 +318,172 @@ const team = [
   { name: "Irina", roleKey: "role_irina", initials: "IR", icon: Flower2, specialty: "Aesthetics" },
 ];
 
-const galleryImgs = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
+
 
 const NAV_ITEMS: Array<[string, string]> = [
   ["nav_services", "#servicios"],
   ["nav_shop", "#tienda"],
   ["nav_team", "#equipo"],
-  ["nav_gallery", "#galeria"],
+  ["nav_gallery", "#portafolio"],
+  ["nav_reviews", "#opiniones"],
   ["nav_contact", "#contacto"],
+];
+
+// Translation overrides + additions for portfolio & reviews sections.
+const TX: Record<Lang, Record<string, string>> = {
+  ES: {
+    nav_reviews: "Opiniones",
+    portfolio_kicker: "05 — Portafolio",
+    portfolio_title: "Trabajos reales del equipo.",
+    portfolio_lead:
+      "Una selección curada de manicura artística, faciales y rituales corporales realizados en nuestro centro.",
+    portfolio_book: "Reservar este servicio",
+    portfolio_more: "Ver galería completa de Irina",
+    irina_title: "Uñas por Irina — Manicura artística",
+    irina_desc:
+      "Diseños geométricos, manicura rusa de precisión y pedicura spa. Una muestra del trabajo de Irina, Master en uñas y belleza.",
+    work_manicure: "Manicura Rusa",
+    work_pedicure: "Pedicura Spa",
+    work_facial: "Ritual Facial",
+    work_massage: "Masaje Relajante",
+    work_nail_art: "Nail Art Geométrico",
+    work_treatment: "Tratamiento Corporal",
+    reviews_kicker: "06 — Opiniones",
+    reviews_title: "Lo que dicen nuestros clientes.",
+    reviews_count: "Basado en 62 valoraciones verificadas",
+    reviews_all: "Ver todas las opiniones",
+    contact_kicker: "07 — Contacto",
+  },
+  EN: {
+    nav_reviews: "Reviews",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Real work by our team.",
+    portfolio_lead:
+      "A curated selection of artistic manicure, facials and body rituals performed at our centre.",
+    portfolio_book: "Book this service",
+    portfolio_more: "View Irina's full gallery",
+    irina_title: "Nails by Irina — Artistic manicure",
+    irina_desc:
+      "Geometric designs, precision Russian manicure and spa pedicure. A glimpse of Irina's work, Master in nails & beauty.",
+    work_manicure: "Russian Manicure",
+    work_pedicure: "Spa Pedicure",
+    work_facial: "Facial Ritual",
+    work_massage: "Relaxing Massage",
+    work_nail_art: "Geometric Nail Art",
+    work_treatment: "Body Treatment",
+    reviews_kicker: "06 — Reviews",
+    reviews_title: "What our clients say.",
+    reviews_count: "Based on 62 verified reviews",
+    reviews_all: "See all reviews",
+    contact_kicker: "07 — Contact",
+  },
+  IT: {
+    nav_reviews: "Recensioni",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Lavori reali del nostro team.",
+    portfolio_lead:
+      "Una selezione curata di manicure artistica, trattamenti viso e rituali corpo realizzati nel nostro centro.",
+    portfolio_book: "Prenota questo servizio",
+    portfolio_more: "Vedi la galleria completa di Irina",
+    irina_title: "Unghie di Irina — Manicure artistica",
+    irina_desc:
+      "Design geometrici, manicure russa di precisione e pedicure spa. Un assaggio del lavoro di Irina, Master in unghie e bellezza.",
+    work_manicure: "Manicure Russa",
+    work_pedicure: "Pedicure Spa",
+    work_facial: "Rituale Viso",
+    work_massage: "Massaggio Rilassante",
+    work_nail_art: "Nail Art Geometrico",
+    work_treatment: "Trattamento Corpo",
+    reviews_kicker: "06 — Recensioni",
+    reviews_title: "Cosa dicono i nostri clienti.",
+    reviews_count: "Basato su 62 recensioni verificate",
+    reviews_all: "Vedi tutte le recensioni",
+    contact_kicker: "07 — Contatti",
+  },
+  DE: {
+    nav_reviews: "Bewertungen",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Echte Arbeiten unseres Teams.",
+    portfolio_lead:
+      "Eine kuratierte Auswahl künstlerischer Maniküren, Gesichtsbehandlungen und Körperrituale aus unserem Studio.",
+    portfolio_book: "Diesen Service buchen",
+    portfolio_more: "Vollständige Galerie von Irina",
+    irina_title: "Nägel von Irina — Künstlerische Maniküre",
+    irina_desc:
+      "Geometrische Designs, präzise russische Maniküre und Spa-Pediküre. Ein Einblick in Irinas Arbeit, Master in Nägeln & Schönheit.",
+    work_manicure: "Russische Maniküre",
+    work_pedicure: "Spa-Pediküre",
+    work_facial: "Gesichtsritual",
+    work_massage: "Entspannungsmassage",
+    work_nail_art: "Geometrisches Nail Art",
+    work_treatment: "Körperbehandlung",
+    reviews_kicker: "06 — Bewertungen",
+    reviews_title: "Was unsere Kunden sagen.",
+    reviews_count: "Basierend auf 62 verifizierten Bewertungen",
+    reviews_all: "Alle Bewertungen ansehen",
+    contact_kicker: "07 — Kontakt",
+  },
+};
+
+const portfolio: Array<{ img: string; workKey: string }> = [
+  { img: gallery1, workKey: "work_manicure" },
+  { img: gallery2, workKey: "work_facial" },
+  { img: gallery3, workKey: "work_pedicure" },
+  { img: gallery4, workKey: "work_nail_art" },
+  { img: gallery5, workKey: "work_massage" },
+  { img: gallery6, workKey: "work_treatment" },
+];
+
+const irinaWorks = [nail1, nail2, nail4, nail3];
+
+// Real public reviews (Fresha / Google) — kept verbatim per source language.
+const reviews = [
+  {
+    name: "Laia P.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Una experiencia maravillosa. Irina es una artista con las uñas: precisión, cuidado y un acabado impecable. Repetiré sin duda.",
+  },
+  {
+    name: "Marco R.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Massaggio rilassante eccezionale con Roberto. Ambiente curato e professionale, sono uscito completamente rigenerato.",
+  },
+  {
+    name: "Sophie K.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Lovely facial with Gloria — calm space, attentive care and beautiful natural products. Highly recommended in Tenerife.",
+  },
+  {
+    name: "Anna B.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Perfekte russische Maniküre, sehr sauber und langanhaltend. Das Team ist herzlich und professionell. Sehr empfehlenswert!",
+  },
+  {
+    name: "Carmen D.",
+    date: "2024",
+    rating: 5,
+    text:
+      "El mejor centro de bienestar de la zona. Trato cercano, productos naturales y resultados visibles desde la primera sesión.",
+  },
 ];
 
 function Index() {
   const [lang, setLang] = useState<Lang>("ES");
-  const [slide, setSlide] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [irinaOpen, setIrinaOpen] = useState(false);
+  const [reviewIdx, setReviewIdx] = useState(0);
   const langRef = useRef<HTMLDivElement>(null);
-  const t = (k: string) => T[lang][k] ?? k;
-
-  const visibleSlides = 3;
-  const maxSlide = Math.max(0, galleryImgs.length - visibleSlides);
+  const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? k;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -654,81 +812,245 @@ function Index() {
         </div>
       </section>
 
-      {/* Gallery */}
-      <section id="galeria">
+      {/* Portfolio */}
+      <section id="portafolio">
         <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div className="max-w-2xl">
-              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                {t("gallery_kicker")}
-              </div>
-              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
-                {t("gallery_title")}
-              </h2>
-              <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{t("gallery_lead")}</p>
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              {t("portfolio_kicker")}
             </div>
-            <div className="hidden items-center gap-2 md:flex">
-              <button
-                type="button"
-                onClick={() => setSlide((s) => Math.max(0, s - 1))}
-                disabled={slide === 0}
-                aria-label="Anterior"
-                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-card hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-card disabled:hover:text-foreground"
-              >
-                <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
-              </button>
-              <button
-                type="button"
-                onClick={() => setSlide((s) => Math.min(maxSlide, s + 1))}
-                disabled={slide === maxSlide}
-                aria-label="Siguiente"
-                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-card hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-card disabled:hover:text-foreground"
-              >
-                <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
-              </button>
-            </div>
+            <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+              {t("portfolio_title")}
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+              {t("portfolio_lead")}
+            </p>
           </div>
 
-          {/* Desktop carousel */}
-          <div className="mt-12 hidden overflow-hidden md:block">
-            <div
-              className="flex transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(calc(-${slide} * (100% / 3 + 8px)))` }}
-            >
-              {galleryImgs.map((src, i) => (
-                <div key={i} className="shrink-0 pr-2" style={{ width: "calc(100% / 3)" }}>
-                  <div className="aspect-[4/5] overflow-hidden rounded-lg bg-card">
+          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {portfolio.map((w, i) => (
+              <article
+                key={i}
+                className="group flex flex-col overflow-hidden rounded-lg bg-card transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
+              >
+                <div className="aspect-[4/5] overflow-hidden bg-secondary">
+                  <img
+                    src={w.img}
+                    alt={t(w.workKey)}
+                    width={800}
+                    height={1000}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 p-5">
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {t(w.workKey)}
+                  </span>
+                  <a
+                    href={FRESHA}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-[11px] font-medium text-foreground/80 transition-colors hover:border-accent hover:text-accent"
+                  >
+                    {t("portfolio_book")}
+                    <ArrowUpRight className="h-3 w-3" strokeWidth={1.5} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Irina featured */}
+          <div className="mt-12 overflow-hidden rounded-lg bg-secondary/60">
+            <div className="grid gap-0 md:grid-cols-12">
+              <div className="grid grid-cols-2 gap-1 bg-background p-1 md:col-span-7">
+                {irinaWorks.map((src, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setIrinaOpen(true)}
+                    className="group relative aspect-square overflow-hidden rounded-md bg-card"
+                    aria-label={t("portfolio_more")}
+                  >
                     <img
                       src={src}
-                      alt={`Trabajo ${i + 1}`}
+                      alt={`${t("irina_title")} — ${i + 1}`}
                       width={800}
-                      height={1000}
+                      height={800}
                       loading="lazy"
-                      className="h-full w-full object-cover"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
-                  </div>
+                  </button>
+                ))}
+              </div>
+              <div className="flex flex-col justify-center gap-6 p-8 md:col-span-5 md:p-12">
+                <div className="inline-flex items-center gap-2 self-start rounded-md bg-card px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Flower2 className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                  Irina
+                </div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("irina_title")}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t("irina_desc")}</p>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <button
+                    type="button"
+                    onClick={() => setIrinaOpen(true)}
+                    className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-medium text-foreground hover:bg-secondary"
+                  >
+                    {t("portfolio_more")}
+                  </button>
+                  <a
+                    href={FRESHA}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground hover:opacity-90"
+                  >
+                    {t("portfolio_book")}
+                    <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section id="opiniones" className="bg-secondary/50">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              {t("reviews_kicker")}
+            </div>
+            <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+              {t("reviews_title")}
+            </h2>
+            <div className="mt-8 flex items-baseline gap-3">
+              <span className="font-display text-6xl text-foreground md:text-7xl">5.0</span>
+              <span className="text-base text-muted-foreground">/ 5</span>
+            </div>
+            <div className="mt-3 flex items-center gap-1" aria-label="5 de 5 estrellas">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Star key={i} className="h-5 w-5 fill-accent text-accent" strokeWidth={0} />
+              ))}
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">{t("reviews_count")}</p>
+          </div>
+
+          {/* Carousel */}
+          <div className="mt-14 overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${reviewIdx * 100}%)` }}
+            >
+              {reviews.map((r, i) => (
+                <div key={i} className="w-full shrink-0 px-1 md:px-3">
+                  <article className="mx-auto flex max-w-3xl flex-col items-center gap-6 rounded-lg bg-background p-8 text-center md:p-12">
+                    <Quote className="h-6 w-6 text-accent" strokeWidth={1.4} />
+                    <p className="text-balance text-lg leading-relaxed text-foreground md:text-xl">
+                      "{r.text}"
+                    </p>
+                    <div className="flex items-center gap-1" aria-label={`${r.rating} estrellas`}>
+                      {Array.from({ length: r.rating }).map((_, j) => (
+                        <Star key={j} className="h-4 w-4 fill-accent text-accent" strokeWidth={0} />
+                      ))}
+                    </div>
+                    <div className="text-sm">
+                      <span className="font-medium text-foreground">{r.name}</span>
+                      <span className="mx-2 text-muted-foreground">·</span>
+                      <span className="text-muted-foreground">{r.date}</span>
+                    </div>
+                  </article>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Mobile grid */}
-          <div className="mt-10 grid grid-cols-2 gap-3 md:hidden">
-            {galleryImgs.map((src, i) => (
-              <div key={i} className="aspect-[4/5] overflow-hidden rounded-md bg-card">
+          <div className="mt-10 flex flex-col items-center justify-center gap-6">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setReviewIdx((s) => Math.max(0, s - 1))}
+                disabled={reviewIdx === 0}
+                aria-label="Anterior"
+                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-background hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-foreground"
+              >
+                <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
+              </button>
+              <div className="flex items-center gap-1.5 px-2">
+                {reviews.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setReviewIdx(i)}
+                    aria-label={`Reseña ${i + 1}`}
+                    className={`h-1.5 rounded-full transition-all ${
+                      reviewIdx === i ? "w-6 bg-accent" : "w-1.5 bg-border"
+                    }`}
+                  />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => setReviewIdx((s) => Math.min(reviews.length - 1, s + 1))}
+                disabled={reviewIdx === reviews.length - 1}
+                aria-label="Siguiente"
+                className="grid h-10 w-10 place-items-center rounded-md border border-border bg-background hover:bg-primary hover:text-primary-foreground disabled:opacity-30 disabled:hover:bg-background disabled:hover:text-foreground"
+              >
+                <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
+              </button>
+            </div>
+            <a
+              href={FRESHA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-3 text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground"
+            >
+              {t("reviews_all")}
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Irina modal */}
+      <Dialog open={irinaOpen} onOpenChange={setIrinaOpen}>
+        <DialogContent className="max-w-4xl border-border bg-background p-0 sm:rounded-lg">
+          <DialogHeader className="px-6 pt-6 sm:px-8 sm:pt-8">
+            <DialogTitle className="font-display text-2xl font-normal text-foreground">
+              {t("irina_title")}
+            </DialogTitle>
+            <DialogDescription className="text-sm text-muted-foreground">
+              {t("irina_desc")}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-2 gap-2 p-4 sm:p-6 md:grid-cols-4">
+            {irinaWorks.map((src, i) => (
+              <div key={i} className="aspect-square overflow-hidden rounded-md bg-secondary">
                 <img
                   src={src}
-                  alt={`Trabajo ${i + 1}`}
+                  alt={`${t("irina_title")} — ${i + 1}`}
                   width={800}
-                  height={1000}
+                  height={800}
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
               </div>
             ))}
           </div>
-        </div>
-      </section>
+          <div className="flex items-center justify-end gap-3 border-t border-border px-6 py-5 sm:px-8">
+            <a
+              href={FRESHA}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-accent-foreground hover:opacity-90"
+            >
+              {t("portfolio_book")}
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Footer / Contact */}
       <footer id="contacto" className="bg-primary text-primary-foreground">
