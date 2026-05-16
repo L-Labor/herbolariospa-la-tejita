@@ -477,7 +477,7 @@ const reviews = [
 
 function Index() {
   const [lang, setLang] = useState<Lang>("ES");
-  const [slide, setSlide] = useState(0);
+  const [lang, setLang] = useState<Lang>("ES");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -485,9 +485,6 @@ function Index() {
   const [reviewIdx, setReviewIdx] = useState(0);
   const langRef = useRef<HTMLDivElement>(null);
   const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? k;
-
-  const visibleSlides = 3;
-  const maxSlide = Math.max(0, portfolio.length - visibleSlides);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
