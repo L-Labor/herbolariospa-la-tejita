@@ -324,8 +324,155 @@ const NAV_ITEMS: Array<[string, string]> = [
   ["nav_services", "#servicios"],
   ["nav_shop", "#tienda"],
   ["nav_team", "#equipo"],
-  ["nav_gallery", "#galeria"],
+  ["nav_gallery", "#portafolio"],
+  ["nav_reviews", "#opiniones"],
   ["nav_contact", "#contacto"],
+];
+
+// Translation overrides + additions for portfolio & reviews sections.
+const TX: Record<Lang, Record<string, string>> = {
+  ES: {
+    nav_reviews: "Opiniones",
+    portfolio_kicker: "05 — Portafolio",
+    portfolio_title: "Trabajos reales del equipo.",
+    portfolio_lead:
+      "Una selección curada de manicura artística, faciales y rituales corporales realizados en nuestro centro.",
+    portfolio_book: "Reservar este servicio",
+    portfolio_more: "Ver galería completa de Irina",
+    irina_title: "Uñas por Irina — Manicura artística",
+    irina_desc:
+      "Diseños geométricos, manicura rusa de precisión y pedicura spa. Una muestra del trabajo de Irina, Master en uñas y belleza.",
+    work_manicure: "Manicura Rusa",
+    work_pedicure: "Pedicura Spa",
+    work_facial: "Ritual Facial",
+    work_massage: "Masaje Relajante",
+    work_nail_art: "Nail Art Geométrico",
+    work_treatment: "Tratamiento Corporal",
+    reviews_kicker: "06 — Opiniones",
+    reviews_title: "Lo que dicen nuestros clientes.",
+    reviews_count: "Basado en 62 valoraciones verificadas",
+    reviews_all: "Ver todas las opiniones",
+    contact_kicker: "07 — Contacto",
+  },
+  EN: {
+    nav_reviews: "Reviews",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Real work by our team.",
+    portfolio_lead:
+      "A curated selection of artistic manicure, facials and body rituals performed at our centre.",
+    portfolio_book: "Book this service",
+    portfolio_more: "View Irina's full gallery",
+    irina_title: "Nails by Irina — Artistic manicure",
+    irina_desc:
+      "Geometric designs, precision Russian manicure and spa pedicure. A glimpse of Irina's work, Master in nails & beauty.",
+    work_manicure: "Russian Manicure",
+    work_pedicure: "Spa Pedicure",
+    work_facial: "Facial Ritual",
+    work_massage: "Relaxing Massage",
+    work_nail_art: "Geometric Nail Art",
+    work_treatment: "Body Treatment",
+    reviews_kicker: "06 — Reviews",
+    reviews_title: "What our clients say.",
+    reviews_count: "Based on 62 verified reviews",
+    reviews_all: "See all reviews",
+    contact_kicker: "07 — Contact",
+  },
+  IT: {
+    nav_reviews: "Recensioni",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Lavori reali del nostro team.",
+    portfolio_lead:
+      "Una selezione curata di manicure artistica, trattamenti viso e rituali corpo realizzati nel nostro centro.",
+    portfolio_book: "Prenota questo servizio",
+    portfolio_more: "Vedi la galleria completa di Irina",
+    irina_title: "Unghie di Irina — Manicure artistica",
+    irina_desc:
+      "Design geometrici, manicure russa di precisione e pedicure spa. Un assaggio del lavoro di Irina, Master in unghie e bellezza.",
+    work_manicure: "Manicure Russa",
+    work_pedicure: "Pedicure Spa",
+    work_facial: "Rituale Viso",
+    work_massage: "Massaggio Rilassante",
+    work_nail_art: "Nail Art Geometrico",
+    work_treatment: "Trattamento Corpo",
+    reviews_kicker: "06 — Recensioni",
+    reviews_title: "Cosa dicono i nostri clienti.",
+    reviews_count: "Basato su 62 recensioni verificate",
+    reviews_all: "Vedi tutte le recensioni",
+    contact_kicker: "07 — Contatti",
+  },
+  DE: {
+    nav_reviews: "Bewertungen",
+    portfolio_kicker: "05 — Portfolio",
+    portfolio_title: "Echte Arbeiten unseres Teams.",
+    portfolio_lead:
+      "Eine kuratierte Auswahl künstlerischer Maniküren, Gesichtsbehandlungen und Körperrituale aus unserem Studio.",
+    portfolio_book: "Diesen Service buchen",
+    portfolio_more: "Vollständige Galerie von Irina",
+    irina_title: "Nägel von Irina — Künstlerische Maniküre",
+    irina_desc:
+      "Geometrische Designs, präzise russische Maniküre und Spa-Pediküre. Ein Einblick in Irinas Arbeit, Master in Nägeln & Schönheit.",
+    work_manicure: "Russische Maniküre",
+    work_pedicure: "Spa-Pediküre",
+    work_facial: "Gesichtsritual",
+    work_massage: "Entspannungsmassage",
+    work_nail_art: "Geometrisches Nail Art",
+    work_treatment: "Körperbehandlung",
+    reviews_kicker: "06 — Bewertungen",
+    reviews_title: "Was unsere Kunden sagen.",
+    reviews_count: "Basierend auf 62 verifizierten Bewertungen",
+    reviews_all: "Alle Bewertungen ansehen",
+    contact_kicker: "07 — Kontakt",
+  },
+};
+
+const portfolio: Array<{ img: string; workKey: string }> = [
+  { img: gallery1, workKey: "work_manicure" },
+  { img: gallery2, workKey: "work_facial" },
+  { img: gallery3, workKey: "work_pedicure" },
+  { img: gallery4, workKey: "work_nail_art" },
+  { img: gallery5, workKey: "work_massage" },
+  { img: gallery6, workKey: "work_treatment" },
+];
+
+const irinaWorks = [nail1, nail2, nail4, nail3];
+
+// Real public reviews (Fresha / Google) — kept verbatim per source language.
+const reviews = [
+  {
+    name: "Laia P.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Una experiencia maravillosa. Irina es una artista con las uñas: precisión, cuidado y un acabado impecable. Repetiré sin duda.",
+  },
+  {
+    name: "Marco R.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Massaggio rilassante eccezionale con Roberto. Ambiente curato e professionale, sono uscito completamente rigenerato.",
+  },
+  {
+    name: "Sophie K.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Lovely facial with Gloria — calm space, attentive care and beautiful natural products. Highly recommended in Tenerife.",
+  },
+  {
+    name: "Anna B.",
+    date: "2025",
+    rating: 5,
+    text:
+      "Perfekte russische Maniküre, sehr sauber und langanhaltend. Das Team ist herzlich und professionell. Sehr empfehlenswert!",
+  },
+  {
+    name: "Carmen D.",
+    date: "2024",
+    rating: 5,
+    text:
+      "El mejor centro de bienestar de la zona. Trato cercano, productos naturales y resultados visibles desde la primera sesión.",
+  },
 ];
 
 function Index() {
