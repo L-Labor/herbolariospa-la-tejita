@@ -18,7 +18,16 @@ import {
   Menu,
   X,
   Globe,
+  Star,
+  Quote,
 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import heroImg from "@/assets/hero-spa.jpg";
 import productAloe from "@/assets/product-aloe.jpg";
 import productMoringa from "@/assets/product-moringa.jpg";
@@ -30,6 +39,10 @@ import gallery3 from "@/assets/gallery-3.jpg";
 import gallery4 from "@/assets/gallery-4.jpg";
 import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
+import nail1 from "@/assets/nail-1.jpg";
+import nail2 from "@/assets/nail-2.jpg";
+import nail3 from "@/assets/nail-3.jpg";
+import nail4 from "@/assets/nail-4.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
