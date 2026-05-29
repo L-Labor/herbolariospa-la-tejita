@@ -20,6 +20,11 @@ import {
   Globe,
   Star,
   Quote,
+  Check,
+  Truck,
+  ShieldCheck,
+  Package,
+  CalendarCheck,
 } from "lucide-react";
 import {
   Dialog,
