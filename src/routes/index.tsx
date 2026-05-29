@@ -20,6 +20,11 @@ import {
   Globe,
   Star,
   Quote,
+  Check,
+  Truck,
+  ShieldCheck,
+  Package,
+  CalendarCheck,
 } from "lucide-react";
 import {
   Dialog,
@@ -333,6 +338,48 @@ const NAV_ITEMS: Array<[string, string]> = [
 const TX: Record<Lang, Record<string, string>> = {
   ES: {
     nav_reviews: "Opiniones",
+    // Hero rediseñado — dual journey
+    hero_eyebrow: "Spa & Tienda Natural — Tenerife",
+    hero_title: "Bienestar y productos naturales en La Tejita.",
+    hero_sub:
+      "Centro de masajes, faciales y manicura en Tenerife — y tienda de cosmética bio, aromaterapia y suplementos naturales de Canarias.",
+    cta_book: "Reservar tratamiento",
+    cta_shop: "Comprar productos naturales",
+    // Split journey
+    journey_kicker: "Dos caminos, una casa",
+    journey_title: "Elige tu experiencia.",
+    svc_card_tag: "Spa",
+    svc_card_title: "Servicios de bienestar",
+    svc_card_desc: "Tratamientos manuales en nuestro centro de La Tejita, con reserva online.",
+    svc_b1: "Masajes, faciales, manicura rusa y pedicura spa",
+    svc_b2: "Equipo experto y atmósfera de calma",
+    svc_b3: "Reserva 24/7 en Fresha",
+    svc_card_cta: "Reservar tratamiento",
+    shop_card_tag: "Tienda",
+    shop_card_title: "Productos naturales",
+    shop_card_desc: "Cosmética bio, aromaterapia y suplementos elaborados en Canarias.",
+    shop_b1: "Vitaminas y suplementos naturales",
+    shop_b2: "Aromaterapia y cosmética bio",
+    shop_b3: "Envío a toda Canarias sin aduanas",
+    shop_card_cta: "Ver productos",
+    // Service durations & outcomes
+    s1_dur: "60 / 90 min",
+    s2_dur: "50 min",
+    s3_dur: "75 min",
+    s4_dur: "60 min",
+    s_book: "Reservar",
+    s_includes: "Incluye",
+    s1_out: "Alivio de tensión muscular y descanso profundo.",
+    s2_out: "Pies suaves, hidratados y cuidados al detalle.",
+    s3_out: "Manicura impecable con duración de hasta 4 semanas.",
+    s4_out: "Piel luminosa, equilibrada y revitalizada.",
+    // Shop trust & shipping
+    trust1: "100% productos naturales",
+    trust2: "Origen Canarias",
+    trust3: "Envío sin aduanas",
+    trust4: "Atención local en Tenerife",
+    shop_shipping: "Envío gratuito en Tenerife desde 40€ · Resto de Canarias 24–72h · Recogida en tienda",
+    shop_add: "Añadir",
     portfolio_kicker: "05 — Portafolio",
     portfolio_title: "Trabajos reales del equipo.",
     portfolio_lead:
@@ -356,6 +403,44 @@ const TX: Record<Lang, Record<string, string>> = {
   },
   EN: {
     nav_reviews: "Reviews",
+    hero_eyebrow: "Spa & Natural Shop — Tenerife",
+    hero_title: "Wellness and natural products in La Tejita.",
+    hero_sub:
+      "Massages, facials and manicures in Tenerife — plus a curated shop of bio cosmetics, aromatherapy and natural supplements from the Canary Islands.",
+    cta_book: "Book treatments",
+    cta_shop: "Shop natural products",
+    journey_kicker: "Two paths, one house",
+    journey_title: "Choose your experience.",
+    svc_card_tag: "Spa",
+    svc_card_title: "Wellness services",
+    svc_card_desc: "Hands-on treatments in our La Tejita centre, with online booking.",
+    svc_b1: "Massages, facials, Russian manicure and spa pedicure",
+    svc_b2: "Expert team and calm atmosphere",
+    svc_b3: "24/7 booking on Fresha",
+    svc_card_cta: "Book treatments",
+    shop_card_tag: "Shop",
+    shop_card_title: "Natural products",
+    shop_card_desc: "Bio cosmetics, aromatherapy and supplements crafted in the Canary Islands.",
+    shop_b1: "Vitamins and natural supplements",
+    shop_b2: "Aromatherapy and bio cosmetics",
+    shop_b3: "Shipping across the Canaries, no customs",
+    shop_card_cta: "Browse products",
+    s1_dur: "60 / 90 min",
+    s2_dur: "50 min",
+    s3_dur: "75 min",
+    s4_dur: "60 min",
+    s_book: "Book",
+    s_includes: "Includes",
+    s1_out: "Muscle tension release and deep rest.",
+    s2_out: "Soft, hydrated, carefully treated feet.",
+    s3_out: "Flawless manicure that lasts up to 4 weeks.",
+    s4_out: "Radiant, balanced and revitalised skin.",
+    trust1: "100% natural products",
+    trust2: "Made in the Canaries",
+    trust3: "No customs charges",
+    trust4: "Local support in Tenerife",
+    shop_shipping: "Free delivery in Tenerife over €40 · Rest of the Canaries 24–72h · In-store pickup",
+    shop_add: "Add",
     portfolio_kicker: "05 — Portfolio",
     portfolio_title: "Real work by our team.",
     portfolio_lead:
@@ -379,6 +464,44 @@ const TX: Record<Lang, Record<string, string>> = {
   },
   IT: {
     nav_reviews: "Recensioni",
+    hero_eyebrow: "Spa & Shop Naturale — Tenerife",
+    hero_title: "Benessere e prodotti naturali a La Tejita.",
+    hero_sub:
+      "Centro di massaggi, trattamenti viso e manicure a Tenerife — e shop di cosmetica bio, aromaterapia e integratori naturali delle Canarie.",
+    cta_book: "Prenota trattamenti",
+    cta_shop: "Acquista prodotti naturali",
+    journey_kicker: "Due percorsi, una casa",
+    journey_title: "Scegli la tua esperienza.",
+    svc_card_tag: "Spa",
+    svc_card_title: "Servizi benessere",
+    svc_card_desc: "Trattamenti manuali nel nostro centro di La Tejita, con prenotazione online.",
+    svc_b1: "Massaggi, viso, manicure russa e pedicure spa",
+    svc_b2: "Team esperto e atmosfera di calma",
+    svc_b3: "Prenotazione 24/7 su Fresha",
+    svc_card_cta: "Prenota trattamenti",
+    shop_card_tag: "Shop",
+    shop_card_title: "Prodotti naturali",
+    shop_card_desc: "Cosmetica bio, aromaterapia e integratori realizzati nelle Canarie.",
+    shop_b1: "Vitamine e integratori naturali",
+    shop_b2: "Aromaterapia e cosmetica bio",
+    shop_b3: "Spedizione in tutte le Canarie senza dogana",
+    shop_card_cta: "Vedi prodotti",
+    s1_dur: "60 / 90 min",
+    s2_dur: "50 min",
+    s3_dur: "75 min",
+    s4_dur: "60 min",
+    s_book: "Prenota",
+    s_includes: "Include",
+    s1_out: "Sollievo dalle tensioni muscolari e riposo profondo.",
+    s2_out: "Piedi morbidi, idratati e curati nei dettagli.",
+    s3_out: "Manicure impeccabile fino a 4 settimane.",
+    s4_out: "Pelle luminosa, equilibrata e rivitalizzata.",
+    trust1: "100% prodotti naturali",
+    trust2: "Origine Canarie",
+    trust3: "Senza dogana",
+    trust4: "Supporto locale a Tenerife",
+    shop_shipping: "Spedizione gratuita a Tenerife da 40€ · Resto delle Canarie 24–72h · Ritiro in negozio",
+    shop_add: "Aggiungi",
     portfolio_kicker: "05 — Portfolio",
     portfolio_title: "Lavori reali del nostro team.",
     portfolio_lead:
@@ -402,6 +525,44 @@ const TX: Record<Lang, Record<string, string>> = {
   },
   DE: {
     nav_reviews: "Bewertungen",
+    hero_eyebrow: "Spa & Naturshop — Teneriffa",
+    hero_title: "Wohlbefinden und Naturprodukte in La Tejita.",
+    hero_sub:
+      "Massagen, Gesichtsbehandlungen und Maniküre auf Teneriffa — und ein Shop für Bio-Kosmetik, Aromatherapie und natürliche Nahrungsergänzung von den Kanaren.",
+    cta_book: "Behandlung buchen",
+    cta_shop: "Naturprodukte kaufen",
+    journey_kicker: "Zwei Wege, ein Haus",
+    journey_title: "Wähle dein Erlebnis.",
+    svc_card_tag: "Spa",
+    svc_card_title: "Wellness-Leistungen",
+    svc_card_desc: "Manuelle Behandlungen in unserem Studio in La Tejita, mit Online-Buchung.",
+    svc_b1: "Massagen, Gesichtsbehandlungen, russische Maniküre und Spa-Pediküre",
+    svc_b2: "Expertenteam und ruhige Atmosphäre",
+    svc_b3: "24/7 Buchung über Fresha",
+    svc_card_cta: "Behandlung buchen",
+    shop_card_tag: "Shop",
+    shop_card_title: "Naturprodukte",
+    shop_card_desc: "Bio-Kosmetik, Aromatherapie und Nahrungsergänzung von den Kanaren.",
+    shop_b1: "Vitamine und natürliche Nahrungsergänzung",
+    shop_b2: "Aromatherapie und Bio-Kosmetik",
+    shop_b3: "Versand auf allen Kanaren, ohne Zoll",
+    shop_card_cta: "Produkte ansehen",
+    s1_dur: "60 / 90 Min",
+    s2_dur: "50 Min",
+    s3_dur: "75 Min",
+    s4_dur: "60 Min",
+    s_book: "Buchen",
+    s_includes: "Inklusive",
+    s1_out: "Lösung muskulärer Spannungen und tiefe Erholung.",
+    s2_out: "Weiche, gepflegte und mit Liebe behandelte Füße.",
+    s3_out: "Makellose Maniküre, bis zu 4 Wochen haltbar.",
+    s4_out: "Strahlende, ausgeglichene und revitalisierte Haut.",
+    trust1: "100% Naturprodukte",
+    trust2: "Aus den Kanaren",
+    trust3: "Keine Zollgebühren",
+    trust4: "Lokaler Support auf Teneriffa",
+    shop_shipping: "Kostenloser Versand auf Teneriffa ab 40€ · Restliche Kanaren 24–72h · Abholung im Shop",
+    shop_add: "Hinzufügen",
     portfolio_kicker: "05 — Portfolio",
     portfolio_title: "Echte Arbeiten unseres Teams.",
     portfolio_lead:
@@ -636,13 +797,13 @@ function Index() {
 
       {/* Hero */}
       <section id="top" className="pt-24 md:pt-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-8 md:px-8 md:pb-32 md:pt-12 lg:grid-cols-12 lg:gap-16">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-16 pt-8 md:px-8 md:pb-20 md:pt-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {t("hero_eyebrow")}
             </div>
-            <h1 className="text-balance text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.05] lg:text-7xl">
+            <h1 className="text-balance text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.05] lg:text-[4.25rem]">
               {t("hero_title")}
             </h1>
             <p className="mt-7 max-w-xl text-[15px] leading-[1.7] text-muted-foreground md:text-lg md:leading-relaxed">
@@ -650,17 +811,20 @@ function Index() {
             </p>
             <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
               <a
-                href="#servicios"
+                href={FRESHA}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
               >
-                {t("hero_cta")}
-                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                <CalendarCheck className="h-4 w-4" strokeWidth={1.5} />
+                {t("cta_book")}
               </a>
               <a
-                href="#equipo"
+                href="#tienda"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground hover:bg-secondary sm:w-auto"
               >
-                {t("hero_team")}
+                <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
+                {t("cta_shop")}
               </a>
             </div>
           </div>
@@ -674,6 +838,86 @@ function Index() {
                 className="h-full w-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two Journeys Split */}
+      <section id="caminos" className="border-t border-border/60">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
+          <div className="mb-12 max-w-2xl">
+            <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              01 — {t("journey_kicker")}
+            </div>
+            <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+              {t("journey_title")}
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+            {/* Services panel */}
+            <a
+              href="#servicios"
+              className="group relative flex flex-col gap-6 overflow-hidden rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)] md:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Sparkles className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                  {t("svc_card_tag")}
+                </span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.4} />
+              </div>
+              <div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("svc_card_title")}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {t("svc_card_desc")}
+                </p>
+              </div>
+              <ul className="flex flex-col gap-2.5">
+                {["svc_b1", "svc_b2", "svc_b3"].map((k) => (
+                  <li key={k} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
+                    <span>{t(k)}</span>
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-2 inline-flex w-fit items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground">
+                {t("svc_card_cta")}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </span>
+            </a>
+
+            {/* Shop panel */}
+            <a
+              href="#tienda"
+              className="group relative flex flex-col gap-6 overflow-hidden rounded-lg bg-[oklch(0.95_0.012_85)] p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)] md:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-md bg-card px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Leaf className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                  {t("shop_card_tag")}
+                </span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.4} />
+              </div>
+              <div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("shop_card_title")}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {t("shop_card_desc")}
+                </p>
+              </div>
+              <ul className="flex flex-col gap-2.5">
+                {["shop_b1", "shop_b2", "shop_b3"].map((k) => (
+                  <li key={k} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
+                    <span>{t(k)}</span>
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-2 inline-flex w-fit items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground">
+                {t("shop_card_cta")}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </span>
+            </a>
           </div>
         </div>
       </section>
@@ -699,7 +943,7 @@ function Index() {
             {services.map(({ icon: Icon, key }, i) => (
               <article
                 key={key}
-                className="group flex flex-col gap-6 rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
+                className="group flex flex-col gap-5 rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
               >
                 <div className="flex items-center justify-between">
                   <span className="grid h-11 w-11 place-items-center rounded-md bg-secondary text-accent">
@@ -711,9 +955,26 @@ function Index() {
                 </div>
                 <div>
                   <h3 className="text-xl">{t(`${key}_title`)}</h3>
-                  <div className="mt-2 text-sm text-accent">{t(`${key}_price`)}</div>
+                  <div className="mt-2 flex items-center gap-3 text-sm">
+                    <span className="text-accent">{t(`${key}_price`)}</span>
+                    <span className="text-border">·</span>
+                    <span className="inline-flex items-center gap-1 text-muted-foreground">
+                      <Clock className="h-3.5 w-3.5" strokeWidth={1.6} />
+                      {t(`${key}_dur`)}
+                    </span>
+                  </div>
                 </div>
                 <p className="text-sm leading-relaxed text-muted-foreground">{t(`${key}_desc`)}</p>
+                <p className="-mt-1 text-sm leading-relaxed text-foreground/85">{t(`${key}_out`)}</p>
+                <a
+                  href={FRESHA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-background px-4 py-2.5 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  {t("s_book")}
+                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+                </a>
               </article>
             ))}
           </div>
@@ -737,13 +998,30 @@ function Index() {
             </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Trust strip */}
+          <div className="mt-10 grid grid-cols-2 gap-3 rounded-lg border border-border bg-card p-4 sm:grid-cols-4 sm:gap-4 sm:p-5">
+            {[
+              { icon: Leaf, key: "trust1" },
+              { icon: MapPin, key: "trust2" },
+              { icon: ShieldCheck, key: "trust3" },
+              { icon: Phone, key: "trust4" },
+            ].map(({ icon: Icon, key }) => (
+              <div key={key} className="flex items-center gap-2.5 text-xs text-foreground/80 sm:text-sm">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-secondary text-accent">
+                  <Icon className="h-4 w-4" strokeWidth={1.6} />
+                </span>
+                <span className="leading-snug">{t(key)}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((p) => (
               <article
                 key={p.key}
                 className="group flex flex-col overflow-hidden rounded-lg bg-card transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
               >
-                <div className="aspect-square overflow-hidden bg-secondary">
+                <div className="relative aspect-square overflow-hidden bg-secondary">
                   <img
                     src={p.img}
                     alt={t(p.key)}
@@ -752,22 +1030,36 @@ function Index() {
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-foreground/80 backdrop-blur">
+                    <Leaf className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                    Bio
+                  </span>
                 </div>
-                <div className="flex flex-1 flex-col gap-4 p-5">
+                <div className="flex flex-1 flex-col gap-3 p-5">
                   <h3 className="text-base leading-snug">{t(p.key)}</h3>
-                  <div className="mt-auto flex items-end justify-between gap-4">
+                  <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
+                    <Package className="h-3 w-3" strokeWidth={1.8} />
+                    {t("trust2")}
+                  </div>
+                  <div className="mt-auto flex items-end justify-between gap-3 pt-2">
                     <span className="font-display text-2xl text-foreground">{p.price}</span>
                     <button
                       type="button"
                       className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-2 text-[11px] font-medium uppercase tracking-widest text-accent-foreground transition-opacity hover:opacity-90"
                     >
                       <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
-                      {t("shop_cta")}
+                      {t("shop_add")}
                     </button>
                   </div>
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* Shipping note */}
+          <div className="mt-8 flex items-start gap-3 rounded-lg bg-secondary/60 p-5 text-sm leading-relaxed text-foreground/80">
+            <Truck className="mt-0.5 h-5 w-5 shrink-0 text-accent" strokeWidth={1.5} />
+            <p>{t("shop_shipping")}</p>
           </div>
         </div>
       </section>
