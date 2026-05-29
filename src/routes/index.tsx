@@ -797,13 +797,13 @@ function Index() {
 
       {/* Hero */}
       <section id="top" className="pt-24 md:pt-28">
-        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-24 pt-8 md:px-8 md:pb-32 md:pt-12 lg:grid-cols-12 lg:gap-16">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 pb-16 pt-8 md:px-8 md:pb-20 md:pt-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <div className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-border bg-card px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               {t("hero_eyebrow")}
             </div>
-            <h1 className="text-balance text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.05] lg:text-7xl">
+            <h1 className="text-balance text-[2.25rem] leading-[1.15] sm:text-5xl sm:leading-[1.1] md:text-6xl md:leading-[1.05] lg:text-[4.25rem]">
               {t("hero_title")}
             </h1>
             <p className="mt-7 max-w-xl text-[15px] leading-[1.7] text-muted-foreground md:text-lg md:leading-relaxed">
@@ -811,17 +811,20 @@ function Index() {
             </p>
             <div className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:gap-4">
               <a
-                href="#servicios"
+                href={FRESHA}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:w-auto"
               >
-                {t("hero_cta")}
-                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+                <CalendarCheck className="h-4 w-4" strokeWidth={1.5} />
+                {t("cta_book")}
               </a>
               <a
-                href="#equipo"
+                href="#tienda"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-card px-6 py-3.5 text-sm font-medium text-foreground hover:bg-secondary sm:w-auto"
               >
-                {t("hero_team")}
+                <ShoppingBag className="h-4 w-4" strokeWidth={1.5} />
+                {t("cta_shop")}
               </a>
             </div>
           </div>
@@ -835,6 +838,228 @@ function Index() {
                 className="h-full w-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Two Journeys Split */}
+      <section id="caminos" className="border-t border-border/60">
+        <div className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
+          <div className="mb-12 max-w-2xl">
+            <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              01 — {t("journey_kicker")}
+            </div>
+            <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+              {t("journey_title")}
+            </h2>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+            {/* Services panel */}
+            <a
+              href="#servicios"
+              className="group relative flex flex-col gap-6 overflow-hidden rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)] md:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Sparkles className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                  {t("svc_card_tag")}
+                </span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.4} />
+              </div>
+              <div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("svc_card_title")}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {t("svc_card_desc")}
+                </p>
+              </div>
+              <ul className="flex flex-col gap-2.5">
+                {["svc_b1", "svc_b2", "svc_b3"].map((k) => (
+                  <li key={k} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
+                    <span>{t(k)}</span>
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-2 inline-flex w-fit items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground">
+                {t("svc_card_cta")}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </span>
+            </a>
+
+            {/* Shop panel */}
+            <a
+              href="#tienda"
+              className="group relative flex flex-col gap-6 overflow-hidden rounded-lg bg-[oklch(0.95_0.012_85)] p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)] md:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-md bg-card px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Leaf className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
+                  {t("shop_card_tag")}
+                </span>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.4} />
+              </div>
+              <div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("shop_card_title")}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {t("shop_card_desc")}
+                </p>
+              </div>
+              <ul className="flex flex-col gap-2.5">
+                {["shop_b1", "shop_b2", "shop_b3"].map((k) => (
+                  <li key={k} className="flex items-start gap-2.5 text-sm text-foreground/85">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" strokeWidth={2} />
+                    <span>{t(k)}</span>
+                  </li>
+                ))}
+              </ul>
+              <span className="mt-2 inline-flex w-fit items-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-medium text-accent-foreground">
+                {t("shop_card_cta")}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section id="servicios" className="bg-secondary/50">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                {t("services_kicker")}
+              </div>
+              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("services_title")}
+              </h2>
+            </div>
+            <p className="text-[15px] leading-relaxed text-muted-foreground md:col-span-5">
+              {t("services_lead")}
+            </p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map(({ icon: Icon, key }, i) => (
+              <article
+                key={key}
+                className="group flex flex-col gap-5 rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="grid h-11 w-11 place-items-center rounded-md bg-secondary text-accent">
+                    <Icon className="h-5 w-5" strokeWidth={1.4} />
+                  </span>
+                  <span className="text-[11px] uppercase tracking-widest text-muted-foreground">
+                    0{i + 1}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="text-xl">{t(`${key}_title`)}</h3>
+                  <div className="mt-2 flex items-center gap-3 text-sm">
+                    <span className="text-accent">{t(`${key}_price`)}</span>
+                    <span className="text-border">·</span>
+                    <span className="inline-flex items-center gap-1 text-muted-foreground">
+                      <Clock className="h-3.5 w-3.5" strokeWidth={1.6} />
+                      {t(`${key}_dur`)}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">{t(`${key}_desc`)}</p>
+                <p className="-mt-1 text-sm leading-relaxed text-foreground/85">{t(`${key}_out`)}</p>
+                <a
+                  href={FRESHA}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-flex items-center justify-center gap-1.5 rounded-md border border-border bg-background px-4 py-2.5 text-xs font-medium uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:text-accent"
+                >
+                  {t("s_book")}
+                  <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.6} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Shop */}
+      <section id="tienda">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <div className="mb-4 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                {t("shop_kicker")}
+              </div>
+              <h2 className="text-[2rem] leading-[1.2] sm:text-4xl md:text-5xl md:leading-[1.1]">
+                {t("shop_title")}
+              </h2>
+            </div>
+            <p className="text-[15px] leading-relaxed text-muted-foreground md:col-span-5">
+              {t("shop_lead")}
+            </p>
+          </div>
+
+          {/* Trust strip */}
+          <div className="mt-10 grid grid-cols-2 gap-3 rounded-lg border border-border bg-card p-4 sm:grid-cols-4 sm:gap-4 sm:p-5">
+            {[
+              { icon: Leaf, key: "trust1" },
+              { icon: MapPin, key: "trust2" },
+              { icon: ShieldCheck, key: "trust3" },
+              { icon: Phone, key: "trust4" },
+            ].map(({ icon: Icon, key }) => (
+              <div key={key} className="flex items-center gap-2.5 text-xs text-foreground/80 sm:text-sm">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-secondary text-accent">
+                  <Icon className="h-4 w-4" strokeWidth={1.6} />
+                </span>
+                <span className="leading-snug">{t(key)}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((p) => (
+              <article
+                key={p.key}
+                className="group flex flex-col overflow-hidden rounded-lg bg-card transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
+              >
+                <div className="relative aspect-square overflow-hidden bg-secondary">
+                  <img
+                    src={p.img}
+                    alt={t(p.key)}
+                    width={800}
+                    height={800}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-foreground/80 backdrop-blur">
+                    <Leaf className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                    Bio
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-5">
+                  <h3 className="text-base leading-snug">{t(p.key)}</h3>
+                  <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
+                    <Package className="h-3 w-3" strokeWidth={1.8} />
+                    {t("trust2")}
+                  </div>
+                  <div className="mt-auto flex items-end justify-between gap-3 pt-2">
+                    <span className="font-display text-2xl text-foreground">{p.price}</span>
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-2 text-[11px] font-medium uppercase tracking-widest text-accent-foreground transition-opacity hover:opacity-90"
+                    >
+                      <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
+                      {t("shop_add")}
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Shipping note */}
+          <div className="mt-8 flex items-start gap-3 rounded-lg bg-secondary/60 p-5 text-sm leading-relaxed text-foreground/80">
+            <Truck className="mt-0.5 h-5 w-5 shrink-0 text-accent" strokeWidth={1.5} />
+            <p>{t("shop_shipping")}</p>
           </div>
         </div>
       </section>
