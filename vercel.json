@@ -1,0 +1,16 @@
+{
+  "framework": null,
+  "buildCommand": "bun run build",
+  "outputDirectory": "dist/client",
+  "functions": {
+    "dist/server/index.js": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/server/index.js"
+    }
+  ]
+}
