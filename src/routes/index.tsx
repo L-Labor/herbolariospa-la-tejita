@@ -40,14 +40,14 @@ import productOil from "@/assets/product-oil.jpg";
 import productHoney from "@/assets/product-honey.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
-import nail1 from "@/assets/nail-1.jpg";
-import nail2 from "@/assets/nail-2.jpg";
-import nail3 from "@/assets/nail-3.jpg";
-import nail4 from "@/assets/nail-4.jpg";
+import gallery3 from "@/assets/gallery-3a.png";
+import gallery4 from "@/assets/gallery-4a.avif";
+import gallery5 from "@/assets/gallery-5a.png";
+import gallery6 from "@/assets/gallery-6a.png";
+import nail1 from "@/assets/nail-1a.avif";
+import nail2 from "@/assets/nail-2a.avif";
+import nail3 from "@/assets/nail-3a.avif";
+import nail4 from "@/assets/nail-4a.avif";
 
 export const Route = createFileRoute("/")({
   head: () => ({
