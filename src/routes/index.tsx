@@ -317,10 +317,14 @@ const services = [
   { icon: Flower2, key: "s4" },
 ];
 
+import teamGloria from "@/assets/team-gloria.jpg";
+import teamRoberto from "@/assets/team-roberto.jpg";
+import teamIrina from "@/assets/team-irina.jpg";
+
 const team = [
-  { name: "Gloria", roleKey: "role_gloria", initials: "GL", icon: Sparkles, specialty: "Nails & Beauty" },
-  { name: "Roberto", roleKey: "role_roberto", initials: "RB", icon: Hand, specialty: "Therapy" },
-  { name: "Irina", roleKey: "role_irina", initials: "IR", icon: Flower2, specialty: "Aesthetics" },
+  { name: "Gloria", roleKey: "role_gloria", photo: teamGloria, icon: Sparkles, specialty: "Nails & Beauty" },
+  { name: "Roberto", roleKey: "role_roberto", photo: teamRoberto, icon: Hand, specialty: "Therapy" },
+  { name: "Irina", roleKey: "role_irina", photo: teamIrina, icon: Flower2, specialty: "Aesthetics" },
 ];
 
 
