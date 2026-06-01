@@ -1412,10 +1412,6 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-16 flex items-start gap-3 border-t border-primary-foreground/15 pt-8 text-xs text-primary-foreground/60">
-            <Info className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.4} />
-            <p className="max-w-3xl leading-relaxed">{t("ai_note")}</p>
-          </div>
 
           <div className="mt-8 flex flex-col items-start justify-between gap-4 text-xs text-primary-foreground/55 sm:flex-row sm:items-center">
             <span>
