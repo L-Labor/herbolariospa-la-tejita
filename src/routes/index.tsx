@@ -317,10 +317,14 @@ const services = [
   { icon: Flower2, key: "s4" },
 ];
 
+import teamGloria from "@/assets/team-gloria.jpg";
+import teamRoberto from "@/assets/team-roberto.jpg";
+import teamIrina from "@/assets/team-irina.jpg";
+
 const team = [
-  { name: "Gloria", roleKey: "role_gloria", initials: "GL", icon: Sparkles, specialty: "Nails & Beauty" },
-  { name: "Roberto", roleKey: "role_roberto", initials: "RB", icon: Hand, specialty: "Therapy" },
-  { name: "Irina", roleKey: "role_irina", initials: "IR", icon: Flower2, specialty: "Aesthetics" },
+  { name: "Gloria", roleKey: "role_gloria", photo: teamGloria, icon: Sparkles, specialty: "Nails & Beauty" },
+  { name: "Roberto", roleKey: "role_roberto", photo: teamRoberto, icon: Hand, specialty: "Therapy" },
+  { name: "Irina", roleKey: "role_irina", photo: teamIrina, icon: Flower2, specialty: "Aesthetics" },
 ];
 
 
@@ -1081,10 +1085,14 @@ function Index() {
               const Icon = m.icon;
               return (
                 <div key={m.name} className="flex flex-col rounded-lg bg-card p-6">
-                  <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-md bg-secondary">
-                    {/* Cohesive coral tint overlay so all portraits feel unified */}
-                    <div className="absolute inset-0 bg-[linear-gradient(160deg,oklch(0.68_0.16_35/0.10),oklch(0.34_0.04_220/0.06))]" />
-                    <span className="relative font-display text-7xl text-primary/85">{m.initials}</span>
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-secondary">
+                    <img
+                      src={m.photo}
+                      alt={m.name}
+                      className="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,oklch(0.68_0.16_35/0.08),oklch(0.34_0.04_220/0.06))]" />
                   </div>
                   <div className="mt-6 flex items-end justify-between gap-4">
                     <div>
