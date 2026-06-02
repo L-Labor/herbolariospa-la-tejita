@@ -717,7 +717,7 @@ function Index() {
   const [irinaOpen, setIrinaOpen] = useState(false);
   const [reviewIdx, setReviewIdx] = useState(0);
   const langRef = useRef<HTMLDivElement>(null);
-  const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? k;
+  const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? TX.ES?.[k] ?? T.ES[k] ?? k;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
