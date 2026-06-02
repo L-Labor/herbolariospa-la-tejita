@@ -38,10 +38,10 @@ import productAloe from "@/assets/product-aloe.jpg";
 import productMoringa from "@/assets/product-moringa.jpg";
 import productOil from "@/assets/product-oil.jpg";
 import productHoney from "@/assets/product-honey.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3a.png";
-import gallery4 from "@/assets/gallery-4a.avif";
+import gallery1 from "@/assets/gallery-nails-pink.jpg";
+import gallery2 from "@/assets/gallery-massage.jpg";
+import gallery3 from "@/assets/gallery-pedicure.png";
+import gallery4 from "@/assets/gallery-nails-biab.jpg";
 import gallery5 from "@/assets/gallery-5a.png";
 import gallery6 from "@/assets/gallery-6a.png";
 import nail1 from "@/assets/nail-1a.avif";
@@ -395,10 +395,10 @@ const TX: Record<Lang, Record<string, string>> = {
       "Diseños geométricos, manicura rusa de precisión y pedicura spa. Una muestra del trabajo de Irina, Master en uñas y belleza.",
     work_manicure: "Manicura Rusa",
     work_pedicure: "Pedicura Spa",
-    work_facial: "Ritual Facial",
-    work_massage: "Masaje Relajante",
-    work_nail_art: "Nail Art Geométrico",
-    work_treatment: "Tratamiento Corporal",
+    work_facial: "Masaje Facial japones KOBIDO",
+    work_massage: "Relaxing Massage",
+    work_nail_art: "BIAB / SOAP NAILS",
+    work_treatment: "MASAJE + CHACKRA BALLANCE",
     reviews_kicker: "06 — Opiniones",
     reviews_title: "Lo que dicen nuestros clientes.",
     reviews_count: "Basado en 62 valoraciones verificadas",
@@ -456,10 +456,10 @@ const TX: Record<Lang, Record<string, string>> = {
       "Geometric designs, precision Russian manicure and spa pedicure. A glimpse of Irina's work, Master in nails & beauty.",
     work_manicure: "Russian Manicure",
     work_pedicure: "Spa Pedicure",
-    work_facial: "Facial Ritual",
+    work_facial: "KOBIDO Japanese Facial Massage",
     work_massage: "Relaxing Massage",
-    work_nail_art: "Geometric Nail Art",
-    work_treatment: "Body Treatment",
+    work_nail_art: "BIAB / SOAP NAILS",
+    work_treatment: "MASSAGE + CHAKRA BALANCE",
     reviews_kicker: "06 — Reviews",
     reviews_title: "What our clients say.",
     reviews_count: "Based on 62 verified reviews",
@@ -517,10 +517,10 @@ const TX: Record<Lang, Record<string, string>> = {
       "Design geometrici, manicure russa di precisione e pedicure spa. Un assaggio del lavoro di Irina, Master in unghie e bellezza.",
     work_manicure: "Manicure Russa",
     work_pedicure: "Pedicure Spa",
-    work_facial: "Rituale Viso",
+    work_facial: "Masaje Facial giapponese KOBIDO",
     work_massage: "Massaggio Rilassante",
-    work_nail_art: "Nail Art Geometrico",
-    work_treatment: "Trattamento Corpo",
+    work_nail_art: "BIAB / SOAP NAILS",
+    work_treatment: "MASSAGGIO + CHAKRA BALANCE",
     reviews_kicker: "06 — Recensioni",
     reviews_title: "Cosa dicono i nostri clienti.",
     reviews_count: "Basato su 62 recensioni verificate",
@@ -578,10 +578,10 @@ const TX: Record<Lang, Record<string, string>> = {
       "Geometrische Designs, präzise russische Maniküre und Spa-Pediküre. Ein Einblick in Irinas Arbeit, Master in Nägeln & Schönheit.",
     work_manicure: "Russische Maniküre",
     work_pedicure: "Spa-Pediküre",
-    work_facial: "Gesichtsritual",
+    work_facial: "Japanische Gesichtsmassage KOBIDO",
     work_massage: "Entspannungsmassage",
-    work_nail_art: "Geometrisches Nail Art",
-    work_treatment: "Körperbehandlung",
+    work_nail_art: "BIAB / SOAP NAILS",
+    work_treatment: "MASSAGE + CHAKRA BALANCE",
     reviews_kicker: "06 — Bewertungen",
     reviews_title: "Was unsere Kunden sagen.",
     reviews_count: "Basierend auf 62 verifizierten Bewertungen",
