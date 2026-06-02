@@ -1091,25 +1091,64 @@ function Index() {
             </p>
           </div>
 
-          {/* Trust strip */}
-          <div className="mt-10 grid grid-cols-2 gap-3 rounded-lg border border-border bg-card p-4 sm:grid-cols-4 sm:gap-4 sm:p-5">
-            {[
-              { icon: Leaf, key: "trust1" },
-              { icon: MapPin, key: "trust2" },
-              { icon: ShieldCheck, key: "trust3" },
-              { icon: Phone, key: "trust4" },
-            ].map(({ icon: Icon, key }) => (
-              <div key={key} className="flex items-center gap-2.5 text-xs text-foreground/80 sm:text-sm">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-secondary text-accent">
-                  <Icon className="h-4 w-4" strokeWidth={1.6} />
-                </span>
-                <span className="leading-snug">{t(key)}</span>
+          {/* Featured bestsellers banner */}
+          <div className="mt-12 overflow-hidden rounded-lg bg-[oklch(0.95_0.012_85)] p-6 md:p-10">
+            <div className="grid gap-8 md:grid-cols-12 md:items-center">
+              <div className="md:col-span-5">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-md bg-background/70 px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                  <Star className="h-3.5 w-3.5 fill-accent text-accent" strokeWidth={0} />
+                  {t("badge_bestseller")}
+                </div>
+                <h3 className="text-2xl leading-tight md:text-3xl">{t("featured_title")}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+                  {t("featured_sub")}
+                </p>
               </div>
-            ))}
+              <div className="grid grid-cols-3 gap-3 md:col-span-7">
+                {featuredProducts.map((p) => (
+                  <div key={p.key} className="overflow-hidden rounded-md bg-background">
+                    <div className="aspect-square overflow-hidden bg-secondary">
+                      <img
+                        src={p.img}
+                        alt={t(p.key)}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <p className="line-clamp-2 text-xs leading-snug text-foreground/80">{t(p.key)}</p>
+                      <p className="mt-1 font-display text-base text-foreground">{p.price}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((p) => (
+          {/* Category filters */}
+          <div className="mt-12 flex flex-wrap gap-2">
+            {CATEGORIES.map((c) => {
+              const active = shopCat === c.value;
+              return (
+                <button
+                  key={c.value}
+                  type="button"
+                  onClick={() => setShopCat(c.value)}
+                  className={`rounded-full border px-4 py-2 text-xs font-medium uppercase tracking-widest transition-colors ${
+                    active
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-card text-foreground/75 hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {t(c.key)}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Product grid */}
+          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {visibleProducts.map((p) => (
               <article
                 key={p.key}
                 className="group flex flex-col overflow-hidden rounded-lg bg-card transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
@@ -1123,17 +1162,40 @@ function Index() {
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-foreground/80 backdrop-blur">
-                    <Leaf className="h-3 w-3 text-accent" strokeWidth={1.8} />
-                    Bio
-                  </span>
+                  <div className="absolute left-3 top-3 flex flex-col gap-1.5">
+                    {p.bio && (
+                      <span className="inline-flex w-fit items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-foreground/80 backdrop-blur">
+                        <Leaf className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                        {t("badge_bio")}
+                      </span>
+                    )}
+                    {p.canarias && (
+                      <span className="inline-flex w-fit items-center gap-1 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-foreground/80 backdrop-blur">
+                        <MapPin className="h-3 w-3 text-accent" strokeWidth={1.8} />
+                        {t("badge_canarias")}
+                      </span>
+                    )}
+                  </div>
+                  {p.badge && (
+                    <span
+                      className={`absolute right-3 top-3 inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-medium uppercase tracking-widest backdrop-blur ${
+                        p.badge === "bestseller"
+                          ? "bg-accent text-accent-foreground"
+                          : "bg-primary text-primary-foreground"
+                      }`}
+                    >
+                      {p.badge === "bestseller" ? (
+                        <Star className="h-3 w-3" strokeWidth={1.8} />
+                      ) : (
+                        <Sparkles className="h-3 w-3" strokeWidth={1.8} />
+                      )}
+                      {t(p.badge === "bestseller" ? "badge_bestseller" : "badge_new")}
+                    </span>
+                  )}
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   <h3 className="text-base leading-snug">{t(p.key)}</h3>
-                  <div className="flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-muted-foreground">
-                    <Package className="h-3 w-3" strokeWidth={1.8} />
-                    {t("trust2")}
-                  </div>
+                  <p className="line-clamp-1 text-xs leading-snug text-muted-foreground">{t(p.descKey)}</p>
                   <div className="mt-auto flex items-end justify-between gap-3 pt-2">
                     <span className="font-display text-2xl text-foreground">{p.price}</span>
                     <button
@@ -1141,7 +1203,7 @@ function Index() {
                       className="inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-2 text-[11px] font-medium uppercase tracking-widest text-accent-foreground transition-opacity hover:opacity-90"
                     >
                       <ShoppingBag className="h-3.5 w-3.5" strokeWidth={1.5} />
-                      {t("shop_add")}
+                      {t("shop_add_cart")}
                     </button>
                   </div>
                 </div>
@@ -1149,13 +1211,31 @@ function Index() {
             ))}
           </div>
 
+          {/* Trust strip */}
+          <div className="mt-10 grid grid-cols-2 gap-3 rounded-lg border border-border bg-card p-4 sm:grid-cols-4 sm:gap-4 sm:p-5">
+            {[
+              { icon: Leaf, key: "trust_strip_natural" },
+              { icon: Package, key: "trust_strip_ship_free" },
+              { icon: MapPin, key: "trust_strip_canarias" },
+              { icon: Truck, key: "trust_strip_ship_rest" },
+            ].map(({ icon: Icon, key }) => (
+              <div key={key} className="flex items-center gap-2.5 text-xs text-foreground/80 sm:text-sm">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-secondary text-accent">
+                  <Icon className="h-4 w-4" strokeWidth={1.6} />
+                </span>
+                <span className="leading-snug">{t(key)}</span>
+              </div>
+            ))}
+          </div>
+
           {/* Shipping note */}
-          <div className="mt-8 flex items-start gap-3 rounded-lg bg-secondary/60 p-5 text-sm leading-relaxed text-foreground/80">
+          <div className="mt-6 flex items-start gap-3 rounded-lg bg-secondary/60 p-5 text-sm leading-relaxed text-foreground/80">
             <Truck className="mt-0.5 h-5 w-5 shrink-0 text-accent" strokeWidth={1.5} />
             <p>{t("shop_shipping")}</p>
           </div>
         </div>
       </section>
+
 
       {/* Team */}
       <section id="equipo" className="bg-secondary/50">
