@@ -303,12 +303,42 @@ const T: Record<Lang, Record<string, string>> = {
 
 const LANGS: Lang[] = ["ES", "EN", "IT", "DE"];
 
-const products = [
-  { img: productAloe, key: "p1", price: "19,00€" },
-  { img: productMoringa, key: "p2", price: "24,50€" },
-  { img: productOil, key: "p3", price: "15,00€" },
-  { img: productHoney, key: "p4", price: "12,00€" },
+type ProductCat = "supplements" | "cosmetics" | "infusions" | "food" | "aromatherapy";
+type ProductBadge = "new" | "bestseller";
+
+const products: Array<{
+  key: string;
+  img: string;
+  price: string;
+  cat: ProductCat;
+  bio?: boolean;
+  canarias?: boolean;
+  badge?: ProductBadge;
+  descKey: string;
+}> = [
+  { key: "p1", img: productAloe, price: "19,00€", cat: "cosmetics", bio: true, canarias: true, badge: "bestseller", descKey: "p1_desc" },
+  { key: "p2", img: productMoringa, price: "24,50€", cat: "supplements", bio: true, canarias: true, badge: "bestseller", descKey: "p2_desc" },
+  { key: "p3", img: productOil, price: "15,00€", cat: "aromatherapy", bio: true, descKey: "p3_desc" },
+  { key: "p4", img: productHoney, price: "12,00€", cat: "food", canarias: true, descKey: "p4_desc" },
+  { key: "p5", img: productMoringa, price: "18,00€", cat: "supplements", bio: true, badge: "new", descKey: "p5_desc" },
+  { key: "p6", img: productAloe, price: "22,00€", cat: "cosmetics", bio: true, canarias: true, descKey: "p6_desc" },
+  { key: "p7", img: productOil, price: "9,50€", cat: "infusions", bio: true, canarias: true, badge: "new", descKey: "p7_desc" },
+  { key: "p8", img: productHoney, price: "11,00€", cat: "infusions", bio: true, descKey: "p8_desc" },
+  { key: "p9", img: productOil, price: "16,00€", cat: "aromatherapy", bio: true, badge: "bestseller", descKey: "p9_desc" },
+  { key: "p10", img: productHoney, price: "14,00€", cat: "food", bio: true, canarias: true, descKey: "p10_desc" },
+  { key: "p11", img: productAloe, price: "28,00€", cat: "cosmetics", bio: true, canarias: true, badge: "new", descKey: "p11_desc" },
+  { key: "p12", img: productMoringa, price: "21,00€", cat: "supplements", bio: true, descKey: "p12_desc" },
 ];
+
+const CATEGORIES: Array<{ key: string; value: ProductCat | "all" }> = [
+  { key: "cat_all", value: "all" },
+  { key: "cat_supplements", value: "supplements" },
+  { key: "cat_cosmetics", value: "cosmetics" },
+  { key: "cat_infusions", value: "infusions" },
+  { key: "cat_food", value: "food" },
+  { key: "cat_aromatherapy", value: "aromatherapy" },
+];
+
 
 const services = [
   { icon: Hand, key: "s1" },
@@ -330,13 +360,14 @@ const team = [
 
 
 const NAV_ITEMS: Array<[string, string]> = [
-  ["nav_services", "#servicios"],
   ["nav_shop", "#tienda"],
+  ["nav_services", "#servicios"],
   ["nav_team", "#equipo"],
   ["nav_gallery", "#portafolio"],
   ["nav_reviews", "#opiniones"],
   ["nav_contact", "#contacto"],
 ];
+
 
 // Translation overrides + additions for portfolio & reviews sections.
 const TX: Record<Lang, Record<string, string>> = {
