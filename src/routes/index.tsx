@@ -733,6 +733,9 @@ function Index() {
   const [langOpen, setLangOpen] = useState(false);
   const [irinaOpen, setIrinaOpen] = useState(false);
   const [reviewIdx, setReviewIdx] = useState(0);
+  const [shopCat, setShopCat] = useState<ProductCat | "all">("all");
+  const visibleProducts = shopCat === "all" ? products : products.filter((p) => p.cat === shopCat);
+  const featuredProducts = products.filter((p) => p.badge === "bestseller").slice(0, 3);
   const langRef = useRef<HTMLDivElement>(null);
   const t = (k: string) => TX[lang]?.[k] ?? T[lang][k] ?? TX.ES?.[k] ?? T.ES[k] ?? k;
 
