@@ -165,3 +165,12 @@
     letter-spacing: -0.02em;
   }
 }
+
+@keyframes lov-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: lov-fade-in 0.35s ease-out both;
+}
