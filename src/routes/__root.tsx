@@ -118,13 +118,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main className="pt-20 md:pt-24">
-          <Outlet />
+          <div key={pathname} className="animate-fade-in">
+            <Outlet />
+          </div>
         </main>
         <Footer />
       </div>
