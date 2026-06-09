@@ -63,6 +63,8 @@ export const NAV_ITEMS: NavItem[] = [
 
 // ---------------- Treatments ----------------
 
+export type ServiceCat = "faciales" | "masajes" | "manos" | "pies";
+
 export type Service = {
   key: string;
   icon: LucideIcon;
@@ -71,6 +73,7 @@ export type Service = {
   duration: string;
   description: string;
   benefit: string;
+  cat: ServiceCat;
 };
 
 export const services: Service[] = [
@@ -83,6 +86,7 @@ export const services: Service[] = [
     description:
       "Liberación de tensión con técnicas profesionales en un entorno de calma absoluta.",
     benefit: "Alivio de tensión muscular y descanso profundo.",
+    cat: "masajes",
   },
   {
     key: "s2",
@@ -93,6 +97,7 @@ export const services: Service[] = [
     description:
       "Ritual completo de cuidado para los pies con baño herbal y exfoliación natural.",
     benefit: "Pies suaves, hidratados y cuidados al detalle.",
+    cat: "pies",
   },
   {
     key: "s3",
@@ -103,6 +108,7 @@ export const services: Service[] = [
     description:
       "Acabado impecable y duradero con la técnica rusa de máxima precisión.",
     benefit: "Manicura impecable con duración de hasta 4 semanas.",
+    cat: "manos",
   },
   {
     key: "s4",
@@ -113,8 +119,18 @@ export const services: Service[] = [
     description:
       "Rituales que devuelven luminosidad, equilibrio y suavidad a tu rostro.",
     benefit: "Piel luminosa, equilibrada y revitalizada.",
+    cat: "faciales",
   },
 ];
+
+export const SERVICE_CATEGORIES: Array<{ label: string; value: ServiceCat | "all" }> = [
+  { label: "Todos", value: "all" },
+  { label: "Faciales", value: "faciales" },
+  { label: "Masajes", value: "masajes" },
+  { label: "Manos", value: "manos" },
+  { label: "Pies", value: "pies" },
+];
+
 
 // ---------------- Products ----------------
 

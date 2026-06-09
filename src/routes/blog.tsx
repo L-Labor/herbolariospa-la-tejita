@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { blogPosts } from "@/lib/site-data";
 
 export const Route = createFileRoute("/blog")({
@@ -17,6 +18,8 @@ export const Route = createFileRoute("/blog")({
 });
 
 function BlogPage() {
+  const [openSlug, setOpenSlug] = useState<string | null>(null);
+
   return (
     <>
       <section>
@@ -37,23 +40,41 @@ function BlogPage() {
       <section className="bg-secondary/50">
         <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {blogPosts.map((post) => (
-              <article
-                key={post.slug}
-                className="flex flex-col rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
-              >
-                <span className="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
-                  {post.tag}
-                </span>
-                <h2 className="mt-5 text-xl leading-tight md:text-2xl">{post.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
-                <div className="mt-6 flex flex-col gap-4 text-sm leading-[1.8] text-foreground/85">
-                  {post.paragraphs.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              </article>
-            ))}
+            {blogPosts.map((post) => {
+              const open = openSlug === post.slug;
+              return (
+                <article
+                  key={post.slug}
+                  className="flex flex-col rounded-lg bg-card p-7 transition-shadow hover:shadow-[0_8px_30px_-12px_rgba(38,70,83,0.18)]"
+                >
+                  <span className="inline-flex w-fit items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
+                    {post.tag}
+                  </span>
+                  <h2 className="mt-5 text-xl leading-tight md:text-2xl">{post.title}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+
+                  {open && (
+                    <div className="animate-fade-in mt-5 flex flex-col gap-4 border-t border-border pt-5 text-sm leading-[1.8] text-foreground/85">
+                      {post.paragraphs.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={() => setOpenSlug(open ? null : post.slug)}
+                    className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-accent hover:text-foreground"
+                  >
+                    {open ? "Cerrar" : "Leer más"}
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`}
+                      strokeWidth={1.6}
+                    />
+                  </button>
+                </article>
+              );
+            })}
           </div>
 
           <div className="mt-12 rounded-lg bg-card p-7 text-center">
