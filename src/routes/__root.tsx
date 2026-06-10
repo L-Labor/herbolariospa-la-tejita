@@ -109,8 +109,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const matches = useRouterState({ select: (s) => s.matches });
+  const langMatch = matches.find((m) => m.params && (m.params as { lang?: string }).lang);
+  const lang = (langMatch?.params as { lang?: string } | undefined)?.lang ?? "es";
   return (
-    <html lang="es">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>
