@@ -1,0 +1,82 @@
+import { Link, useParams } from "@tanstack/react-router";
+import { ChevronDown, Languages } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { LANGS, LANG_LABEL, LANG_SHORT, persistLang, type Lang } from "@/i18n";
+
+export function LanguageSwitcher({
+  currentLang,
+  variant = "header",
+}: {
+  currentLang: Lang;
+  variant?: "header" | "mobile";
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  // Get the rest of the path under $lang.
+  const params = useParams({ strict: false }) as { _splat?: string };
+  const splat = (params as any)["*"] ?? params._splat ?? "";
+
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    window.addEventListener("click", onClick);
+    return () => window.removeEventListener("click", onClick);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={
+          variant === "header"
+            ? "inline-flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-2 text-xs font-medium uppercase tracking-widest text-foreground/80 hover:border-accent hover:text-accent"
+            : "inline-flex w-full items-center justify-between gap-2 rounded-md border border-border bg-card px-3 py-3 text-sm font-medium text-foreground"
+        }
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Language"
+      >
+        <Languages className="h-3.5 w-3.5" strokeWidth={1.6} />
+        <span>{LANG_SHORT[currentLang]}</span>
+        <ChevronDown className="h-3.5 w-3.5" strokeWidth={1.6} />
+      </button>
+      {open && (
+        <ul
+          role="listbox"
+          className={
+            variant === "header"
+              ? "absolute right-0 z-50 mt-2 w-40 overflow-hidden rounded-md border border-border bg-background shadow-lg"
+              : "mt-2 w-full overflow-hidden rounded-md border border-border bg-background"
+          }
+        >
+          {LANGS.map((l) => {
+            const active = l === currentLang;
+            return (
+              <li key={l}>
+                <Link
+                  to="/$lang/$"
+                  params={{ lang: l, _splat: splat || "" } as any}
+                  onClick={() => {
+                    persistLang(l);
+                    setOpen(false);
+                  }}
+                  className={`flex items-center justify-between gap-2 px-3 py-2.5 text-sm hover:bg-secondary ${
+                    active ? "font-medium text-foreground" : "text-foreground/80"
+                  }`}
+                >
+                  <span>{LANG_LABEL[l]}</span>
+                  <span className="text-xs uppercase tracking-widest text-muted-foreground">
+                    {LANG_SHORT[l]}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
