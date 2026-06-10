@@ -12,9 +12,19 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TratamientosRouteImport } from './routes/tratamientos'
 import { Route as TiendaRouteImport } from './routes/tienda'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LangIndexRouteImport } from './routes/$lang.index'
+import { Route as LangTratamientosRouteImport } from './routes/$lang.tratamientos'
+import { Route as LangTiendaRouteImport } from './routes/$lang.tienda'
+import { Route as LangSobreNosotrosRouteImport } from './routes/$lang.sobre-nosotros'
+import { Route as LangContactoRouteImport } from './routes/$lang.contacto'
+import { Route as LangCheckoutRouteImport } from './routes/$lang.checkout'
+import { Route as LangCarritoRouteImport } from './routes/$lang.carrito'
+import { Route as LangBlogRouteImport } from './routes/$lang.blog'
 
 const TratamientosRoute = TratamientosRouteImport.update({
   id: '/tratamientos',
@@ -31,6 +41,11 @@ const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
   path: '/sobre-nosotros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
@@ -41,68 +56,173 @@ const BlogRoute = BlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangTratamientosRoute = LangTratamientosRouteImport.update({
+  id: '/tratamientos',
+  path: '/tratamientos',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangTiendaRoute = LangTiendaRouteImport.update({
+  id: '/tienda',
+  path: '/tienda',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangSobreNosotrosRoute = LangSobreNosotrosRouteImport.update({
+  id: '/sobre-nosotros',
+  path: '/sobre-nosotros',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangContactoRoute = LangContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCheckoutRoute = LangCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCarritoRoute = LangCarritoRouteImport.update({
+  id: '/carrito',
+  path: '/carrito',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangBlogRoute = LangBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
+  '/$lang/blog': typeof LangBlogRoute
+  '/$lang/carrito': typeof LangCarritoRoute
+  '/$lang/checkout': typeof LangCheckoutRoute
+  '/$lang/contacto': typeof LangContactoRoute
+  '/$lang/sobre-nosotros': typeof LangSobreNosotrosRoute
+  '/$lang/tienda': typeof LangTiendaRoute
+  '/$lang/tratamientos': typeof LangTratamientosRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
+  '/$lang/blog': typeof LangBlogRoute
+  '/$lang/carrito': typeof LangCarritoRoute
+  '/$lang/checkout': typeof LangCheckoutRoute
+  '/$lang/contacto': typeof LangContactoRoute
+  '/$lang/sobre-nosotros': typeof LangSobreNosotrosRoute
+  '/$lang/tienda': typeof LangTiendaRoute
+  '/$lang/tratamientos': typeof LangTratamientosRoute
+  '/$lang': typeof LangIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
+  '/$lang/blog': typeof LangBlogRoute
+  '/$lang/carrito': typeof LangCarritoRoute
+  '/$lang/checkout': typeof LangCheckoutRoute
+  '/$lang/contacto': typeof LangContactoRoute
+  '/$lang/sobre-nosotros': typeof LangSobreNosotrosRoute
+  '/$lang/tienda': typeof LangTiendaRoute
+  '/$lang/tratamientos': typeof LangTratamientosRoute
+  '/$lang/': typeof LangIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$lang'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
+    | '/$lang/blog'
+    | '/$lang/carrito'
+    | '/$lang/checkout'
+    | '/$lang/contacto'
+    | '/$lang/sobre-nosotros'
+    | '/$lang/tienda'
+    | '/$lang/tratamientos'
+    | '/$lang/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
+    | '/$lang/blog'
+    | '/$lang/carrito'
+    | '/$lang/checkout'
+    | '/$lang/contacto'
+    | '/$lang/sobre-nosotros'
+    | '/$lang/tienda'
+    | '/$lang/tratamientos'
+    | '/$lang'
   id:
     | '__root__'
     | '/'
+    | '/$lang'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
+    | '/$lang/blog'
+    | '/$lang/carrito'
+    | '/$lang/checkout'
+    | '/$lang/contacto'
+    | '/$lang/sobre-nosotros'
+    | '/$lang/tienda'
+    | '/$lang/tratamientos'
+    | '/$lang/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
   BlogRoute: typeof BlogRoute
   ContactoRoute: typeof ContactoRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
   TiendaRoute: typeof TiendaRoute
   TratamientosRoute: typeof TratamientosRoute
@@ -131,6 +251,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreNosotrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contacto': {
       id: '/contacto'
       path: '/contacto'
@@ -145,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -152,13 +286,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/tratamientos': {
+      id: '/$lang/tratamientos'
+      path: '/tratamientos'
+      fullPath: '/$lang/tratamientos'
+      preLoaderRoute: typeof LangTratamientosRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/tienda': {
+      id: '/$lang/tienda'
+      path: '/tienda'
+      fullPath: '/$lang/tienda'
+      preLoaderRoute: typeof LangTiendaRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/sobre-nosotros': {
+      id: '/$lang/sobre-nosotros'
+      path: '/sobre-nosotros'
+      fullPath: '/$lang/sobre-nosotros'
+      preLoaderRoute: typeof LangSobreNosotrosRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/contacto': {
+      id: '/$lang/contacto'
+      path: '/contacto'
+      fullPath: '/$lang/contacto'
+      preLoaderRoute: typeof LangContactoRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/checkout': {
+      id: '/$lang/checkout'
+      path: '/checkout'
+      fullPath: '/$lang/checkout'
+      preLoaderRoute: typeof LangCheckoutRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/carrito': {
+      id: '/$lang/carrito'
+      path: '/carrito'
+      fullPath: '/$lang/carrito'
+      preLoaderRoute: typeof LangCarritoRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/blog': {
+      id: '/$lang/blog'
+      path: '/blog'
+      fullPath: '/$lang/blog'
+      preLoaderRoute: typeof LangBlogRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
+interface LangRouteChildren {
+  LangBlogRoute: typeof LangBlogRoute
+  LangCarritoRoute: typeof LangCarritoRoute
+  LangCheckoutRoute: typeof LangCheckoutRoute
+  LangContactoRoute: typeof LangContactoRoute
+  LangSobreNosotrosRoute: typeof LangSobreNosotrosRoute
+  LangTiendaRoute: typeof LangTiendaRoute
+  LangTratamientosRoute: typeof LangTratamientosRoute
+  LangIndexRoute: typeof LangIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangBlogRoute: LangBlogRoute,
+  LangCarritoRoute: LangCarritoRoute,
+  LangCheckoutRoute: LangCheckoutRoute,
+  LangContactoRoute: LangContactoRoute,
+  LangSobreNosotrosRoute: LangSobreNosotrosRoute,
+  LangTiendaRoute: LangTiendaRoute,
+  LangTratamientosRoute: LangTratamientosRoute,
+  LangIndexRoute: LangIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRouteWithChildren,
   BlogRoute: BlogRoute,
   ContactoRoute: ContactoRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,
   TiendaRoute: TiendaRoute,
   TratamientosRoute: TratamientosRoute,
@@ -166,13 +382,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

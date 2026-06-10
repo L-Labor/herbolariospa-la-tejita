@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://herbolariospa-la-tejita.lovable.app/sitemap.xml

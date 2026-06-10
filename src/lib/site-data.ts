@@ -147,6 +147,7 @@ export type Product = {
   name: string;
   description: string;
   price: string;
+  priceEur: number;
   img: string;
   cat: ProductCat;
   bio?: boolean;
@@ -160,6 +161,7 @@ export const products: Product[] = [
     name: "Gel Puro de Aloe Vera de Tenerife",
     description: "Hidratante puro extraído en Tenerife (250 ml).",
     price: "19,00€",
+    priceEur: 19.00,
     img: productAloe,
     cat: "corporal",
     bio: true,
@@ -171,6 +173,7 @@ export const products: Product[] = [
     name: "Cápsulas de Moringa Canaria Bio",
     description: "Suplemento ecológico rico en nutrientes.",
     price: "24,50€",
+    priceEur: 24.50,
     img: productMoringa,
     cat: "herbolario",
     bio: true,
@@ -182,6 +185,7 @@ export const products: Product[] = [
     name: "Aceite Esencial de Lavanda y Caléndula",
     description: "Mezcla relajante para difusor y masaje.",
     price: "15,00€",
+    priceEur: 15.00,
     img: productOil,
     cat: "corporal",
     bio: true,
@@ -191,6 +195,7 @@ export const products: Product[] = [
     name: "Miel de Flores de la Isla con Jalea Real",
     description: "Miel artesanal con jalea real de la isla.",
     price: "12,00€",
+    priceEur: 12.00,
     img: productHoney,
     cat: "canarias",
     canarias: true,
@@ -200,6 +205,7 @@ export const products: Product[] = [
     name: "Vitamina D3 + K2 Natural",
     description: "Defensas y huesos fuertes, fórmula bio.",
     price: "18,00€",
+    priceEur: 18.00,
     img: productMoringa,
     cat: "herbolario",
     bio: true,
@@ -210,6 +216,7 @@ export const products: Product[] = [
     name: "Crema Facial Aloe & Caléndula",
     description: "Hidratación diaria con extractos canarios.",
     price: "22,00€",
+    priceEur: 22.00,
     img: productAloe,
     cat: "facial",
     bio: true,
@@ -220,6 +227,7 @@ export const products: Product[] = [
     name: "Infusión Detox de Hierbas Canarias",
     description: "Mezcla depurativa con poleo y manzanilla.",
     price: "9,50€",
+    priceEur: 9.50,
     img: productOil,
     cat: "herbolario",
     bio: true,
@@ -231,6 +239,7 @@ export const products: Product[] = [
     name: "Té Verde Bio con Hierbabuena",
     description: "Antioxidante natural, sabor refrescante.",
     price: "11,00€",
+    priceEur: 11.00,
     img: productHoney,
     cat: "herbolario",
     bio: true,
@@ -240,6 +249,7 @@ export const products: Product[] = [
     name: "Aceite Esencial de Eucalipto Bio",
     description: "Aliado respiratorio para difusor o vapor.",
     price: "16,00€",
+    priceEur: 16.00,
     img: productOil,
     cat: "corporal",
     bio: true,
@@ -250,6 +260,7 @@ export const products: Product[] = [
     name: "Aceite de Oliva Virgen Extra Canario",
     description: "Prensado en frío, sabor afrutado intenso.",
     price: "14,00€",
+    priceEur: 14.00,
     img: productHoney,
     cat: "canarias",
     bio: true,
@@ -260,6 +271,7 @@ export const products: Product[] = [
     name: "Sérum Facial de Vitamina C Bio",
     description: "Luminosidad y antioxidante natural.",
     price: "28,00€",
+    priceEur: 28.00,
     img: productAloe,
     cat: "facial",
     bio: true,
@@ -271,6 +283,7 @@ export const products: Product[] = [
     name: "Cápsulas de Cúrcuma + Pimienta Negra",
     description: "Antiinflamatorio natural de alta absorción.",
     price: "21,00€",
+    priceEur: 21.00,
     img: productMoringa,
     cat: "herbolario",
     bio: true,
