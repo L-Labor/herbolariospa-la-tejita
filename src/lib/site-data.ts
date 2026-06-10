@@ -147,6 +147,7 @@ export type Product = {
   name: string;
   description: string;
   price: string;
+  priceEur: number;
   img: string;
   cat: ProductCat;
   bio?: boolean;
