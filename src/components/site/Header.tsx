@@ -35,14 +35,14 @@ export function Header() {
     };
   }, [menuOpen, cartOpen]);
 
-  const navItems = [
-    { to: "/$lang", label: t.nav.home, exact: true as boolean | undefined },
+  const navItems: Array<{ to: string; label: string; exact?: boolean }> = [
+    { to: "/$lang", label: t.nav.home, exact: true },
     { to: "/$lang/tienda", label: t.nav.shop },
     { to: "/$lang/tratamientos", label: t.nav.treatments },
     { to: "/$lang/sobre-nosotros", label: t.nav.about },
     { to: "/$lang/blog", label: t.nav.blog },
     { to: "/$lang/contacto", label: t.nav.contact },
-  ] as const;
+  ];
 
   return (
     <>
