@@ -36,7 +36,7 @@ export function Header() {
   }, [menuOpen, cartOpen]);
 
   const navItems = [
-    { to: "/$lang", label: t.nav.home, exact: true },
+    { to: "/$lang", label: t.nav.home, exact: true as boolean | undefined },
     { to: "/$lang/tienda", label: t.nav.shop },
     { to: "/$lang/tratamientos", label: t.nav.treatments },
     { to: "/$lang/sobre-nosotros", label: t.nav.about },
