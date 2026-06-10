@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TratamientosRouteImport } from './routes/tratamientos'
 import { Route as TiendaRouteImport } from './routes/tienda'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as LangRouteImport } from './routes/$lang'
@@ -38,6 +39,11 @@ const TiendaRoute = TiendaRouteImport.update({
 const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
   id: '/sobre-nosotros',
   path: '/sobre-nosotros',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/$lang': typeof LangRouteWithChildren
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/blog': typeof BlogRoute
   '/contacto': typeof ContactoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
   '/tienda': typeof TiendaRoute
   '/tratamientos': typeof TratamientosRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/blog'
     | '/contacto'
+    | '/sitemap.xml'
     | '/sobre-nosotros'
     | '/tienda'
     | '/tratamientos'
@@ -210,6 +222,7 @@ export interface RootRouteChildren {
   LangRoute: typeof LangRouteWithChildren
   BlogRoute: typeof BlogRoute
   ContactoRoute: typeof ContactoRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
   TiendaRoute: typeof TiendaRoute
   TratamientosRoute: typeof TratamientosRoute
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/sobre-nosotros'
       fullPath: '/sobre-nosotros'
       preLoaderRoute: typeof SobreNosotrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -354,6 +374,7 @@ const rootRouteChildren: RootRouteChildren = {
   LangRoute: LangRouteWithChildren,
   BlogRoute: BlogRoute,
   ContactoRoute: ContactoRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,
   TiendaRoute: TiendaRoute,
   TratamientosRoute: TratamientosRoute,
