@@ -54,7 +54,7 @@ export function Header() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-4 md:px-8">
-          <Link to="/$lang" params={{ lang }} className="flex items-center gap-2.5">
+          <Link to="/$lang" params={{ lang } as any} className="flex items-center gap-2.5">
             <span className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground">
               <Leaf className="h-4 w-4" strokeWidth={1.5} />
             </span>
@@ -67,8 +67,8 @@ export function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.to}
-                to={item.to}
-                params={{ lang }}
+                to={item.to as any}
+                params={{ lang } as any}
                 activeOptions={{ exact: item.exact }}
                 className="text-sm text-foreground/75 transition-colors hover:text-foreground data-[status=active]:text-foreground data-[status=active]:font-medium"
               >
@@ -118,8 +118,8 @@ export function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.to}
-                to={item.to}
-                params={{ lang }}
+                to={item.to as any}
+                params={{ lang } as any}
                 activeOptions={{ exact: item.exact }}
                 className="rounded-md px-2 py-3 text-base text-foreground/85 hover:bg-secondary data-[status=active]:text-foreground data-[status=active]:font-medium"
               >
