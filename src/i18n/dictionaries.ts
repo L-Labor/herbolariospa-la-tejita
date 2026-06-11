@@ -280,7 +280,7 @@ const en: Dict = {
   },
   common: {
     language: "Language",
-    translationNotice: "Some content is available in Spanish only.",
+    translationNotice: "Extended editorial content is currently available in Spanish. Shop, treatments and checkout remain fully localized.",
     backHome: "Back to home",
   },
 };
@@ -377,7 +377,7 @@ const de: Dict = {
   },
   common: {
     language: "Sprache",
-    translationNotice: "Einige Inhalte sind nur auf Spanisch verfügbar.",
+    translationNotice: "Ausführliche redaktionelle Inhalte sind derzeit auf Spanisch verfügbar. Shop, Behandlungen und Kasse sind vollständig lokalisiert.",
     backHome: "Zur Startseite",
   },
 };
@@ -474,7 +474,7 @@ const it: Dict = {
   },
   common: {
     language: "Lingua",
-    translationNotice: "Alcuni contenuti sono disponibili solo in spagnolo.",
+    translationNotice: "I contenuti editoriali estesi sono attualmente disponibili in spagnolo. Shop, trattamenti e checkout restano completamente localizzati.",
     backHome: "Torna alla home",
   },
 };

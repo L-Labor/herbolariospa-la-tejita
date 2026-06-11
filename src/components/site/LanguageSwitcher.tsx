@@ -1,7 +1,7 @@
-import { Link, useParams } from "@tanstack/react-router";
+import { useRouter, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Languages } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { LANGS, LANG_LABEL, LANG_SHORT, persistLang, type Lang } from "@/i18n";
+import { LANGS, LANG_LABEL, LANG_SHORT, persistLang, isLang, type Lang } from "@/i18n";
 
 export function LanguageSwitcher({
   currentLang,
@@ -12,9 +12,8 @@ export function LanguageSwitcher({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  // Get the rest of the path under $lang.
-  const params = useParams({ strict: false }) as { _splat?: string };
-  const splat = (params as any)["*"] ?? params._splat ?? "";
+  const router = useRouter();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (!open) return;
@@ -24,6 +23,20 @@ export function LanguageSwitcher({
     window.addEventListener("click", onClick);
     return () => window.removeEventListener("click", onClick);
   }, [open]);
+
+  function swapLang(target: Lang) {
+    // Replace the first path segment if it is a lang code; else prefix it.
+    const segments = pathname.split("/").filter(Boolean);
+    if (segments.length > 0 && isLang(segments[0])) {
+      segments[0] = target;
+    } else {
+      segments.unshift(target);
+    }
+    const nextPath = "/" + segments.join("/");
+    persistLang(target);
+    setOpen(false);
+    router.navigate({ to: nextPath });
+  }
 
   return (
     <div ref={ref} className="relative">
@@ -56,14 +69,10 @@ export function LanguageSwitcher({
             const active = l === currentLang;
             return (
               <li key={l}>
-                <Link
-                  to="/$lang/$"
-                  params={{ lang: l, _splat: splat || "" } as any}
-                  onClick={() => {
-                    persistLang(l);
-                    setOpen(false);
-                  }}
-                  className={`flex items-center justify-between gap-2 px-3 py-2.5 text-sm hover:bg-secondary ${
+                <button
+                  type="button"
+                  onClick={() => swapLang(l)}
+                  className={`flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left text-sm hover:bg-secondary ${
                     active ? "font-medium text-foreground" : "text-foreground/80"
                   }`}
                 >
@@ -71,7 +80,7 @@ export function LanguageSwitcher({
                   <span className="text-xs uppercase tracking-widest text-muted-foreground">
                     {LANG_SHORT[l]}
                   </span>
-                </Link>
+                </button>
               </li>
             );
           })}
