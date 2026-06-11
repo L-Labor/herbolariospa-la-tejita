@@ -301,6 +301,15 @@ const en: Dict = {
     translationNotice: "Extended editorial content is currently available in Spanish. Shop, treatments and checkout remain fully localized.",
     backHome: "Back to home",
   },
+  team: {
+    nailsBeauty: "💅 Nails & Beauty",
+    therapy: "✋ Therapy",
+    beautyTreatments: "🌿 Beauty & Treatments",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Read 139 reviews on Google",
+  },
 };
 
 const de: Dict = {
