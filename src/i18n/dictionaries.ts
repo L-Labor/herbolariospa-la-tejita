@@ -89,6 +89,15 @@ export type Dict = {
     translationNotice: string;
     backHome: string;
   };
+  team: {
+    nailsBeauty: string;
+    therapy: string;
+    beautyTreatments: string;
+  };
+  reviews: {
+    fromGoogle: string;
+    seeAll: string;
+  };
 };
 
 const es: Dict = {
@@ -185,6 +194,15 @@ const es: Dict = {
     language: "Idioma",
     translationNotice: "",
     backHome: "Volver al inicio",
+  },
+  team: {
+    nailsBeauty: "💅 Uñas y belleza",
+    therapy: "✋ Terapia",
+    beautyTreatments: "🌿 Belleza y tratamientos",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Ver 139 opiniones en Google",
   },
 };
 
@@ -283,6 +301,15 @@ const en: Dict = {
     translationNotice: "Extended editorial content is currently available in Spanish. Shop, treatments and checkout remain fully localized.",
     backHome: "Back to home",
   },
+  team: {
+    nailsBeauty: "💅 Nails & Beauty",
+    therapy: "✋ Therapy",
+    beautyTreatments: "🌿 Beauty & Treatments",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Read 139 reviews on Google",
+  },
 };
 
 const de: Dict = {
@@ -380,6 +407,15 @@ const de: Dict = {
     translationNotice: "Ausführliche redaktionelle Inhalte sind derzeit auf Spanisch verfügbar. Shop, Behandlungen und Kasse sind vollständig lokalisiert.",
     backHome: "Zur Startseite",
   },
+  team: {
+    nailsBeauty: "💅 Nägel & Schönheit",
+    therapy: "✋ Therapie",
+    beautyTreatments: "🌿 Schönheit & Behandlungen",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "139 Bewertungen auf Google lesen",
+  },
 };
 
 const it: Dict = {
@@ -476,6 +512,15 @@ const it: Dict = {
     language: "Lingua",
     translationNotice: "I contenuti editoriali estesi sono attualmente disponibili in spagnolo. Shop, trattamenti e checkout restano completamente localizzati.",
     backHome: "Torna alla home",
+  },
+  team: {
+    nailsBeauty: "💅 Unghie & Bellezza",
+    therapy: "✋ Terapia",
+    beautyTreatments: "🌿 Bellezza & Trattamenti",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Leggi 139 recensioni su Google",
   },
 };
 
