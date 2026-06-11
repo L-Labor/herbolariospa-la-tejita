@@ -8,7 +8,7 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
-import { FRESHA, heroImg, reviews, services, team } from "@/lib/site-data";
+import { FRESHA, GOOGLE_REVIEWS_URL, heroImg, reviews, services, team } from "@/lib/site-data";
 import { useT } from "@/i18n/I18nProvider";
 import { resolveLang } from "@/i18n";
 import { pageLinks } from "@/lib/seo";
