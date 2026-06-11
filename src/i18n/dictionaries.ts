@@ -407,6 +407,15 @@ const de: Dict = {
     translationNotice: "Ausführliche redaktionelle Inhalte sind derzeit auf Spanisch verfügbar. Shop, Behandlungen und Kasse sind vollständig lokalisiert.",
     backHome: "Zur Startseite",
   },
+  team: {
+    nailsBeauty: "💅 Nägel & Schönheit",
+    therapy: "✋ Therapie",
+    beautyTreatments: "🌿 Schönheit & Behandlungen",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "139 Bewertungen auf Google lesen",
+  },
 };
 
 const it: Dict = {
