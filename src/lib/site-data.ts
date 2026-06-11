@@ -300,10 +300,12 @@ export const PRODUCT_CATEGORIES: Array<{ label: string; value: ProductCat | "all
 
 // ---------------- Team ----------------
 
+export type TeamSpecialty = "nailsBeauty" | "therapy" | "beautyTreatments";
+
 export type TeamMember = {
   name: string;
   role: string;
-  specialty: string;
+  specialtyKey: TeamSpecialty;
   photo: string;
   icon: LucideIcon;
 };
@@ -312,25 +314,29 @@ export const team: TeamMember[] = [
   {
     name: "Gloria",
     role: "Experta en belleza y uñas",
-    specialty: "Nails & Beauty",
+    specialtyKey: "nailsBeauty",
     photo: teamGloria,
     icon: Sparkles,
   },
   {
     name: "Roberto",
     role: "Terapeuta profesional",
-    specialty: "Therapy",
+    specialtyKey: "therapy",
     photo: teamRoberto,
     icon: Hand,
   },
   {
     name: "Irina",
     role: "Master en uñas y belleza",
-    specialty: "Aesthetics",
+    specialtyKey: "nailsBeauty",
     photo: teamIrina,
-    icon: Flower2,
+    icon: Sparkles,
   },
 ];
+
+// Public Google Maps profile (139 reviews, 5.0)
+export const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/maps/place/Herbolario+Spa+La+Tejita";
 
 // ---------------- Portfolio ----------------
 
