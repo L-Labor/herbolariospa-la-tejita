@@ -232,19 +232,39 @@ function Inicio() {
             </div>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {reviews.slice(0, 3).map((r, i) => (
-              <article key={i} className="flex flex-col gap-4 rounded-lg bg-background p-7">
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: r.rating }).map((_, j) => (
-                    <Star key={j} className="h-4 w-4 fill-accent text-accent" strokeWidth={0} />
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed text-foreground">"{r.text}"</p>
-                <div className="mt-auto text-xs text-muted-foreground">
-                  <span className="font-medium text-foreground">{r.name}</span> · {r.date}
-                </div>
-              </article>
-            ))}
+            {(() => {
+              const pool = reviews.filter((r) => r.lang === (lang === "es" ? "es" : "en"));
+              const count = lang === "es" || lang === "en" ? 3 : 2;
+              return pool.slice(0, count).map((r, i) => (
+                <article key={i} className="flex flex-col gap-4 rounded-lg bg-background p-7">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: r.rating }).map((_, j) => (
+                        <Star key={j} className="h-4 w-4 fill-accent text-accent" strokeWidth={0} />
+                      ))}
+                    </div>
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {t.reviews.fromGoogle}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground">"{r.text}"</p>
+                  <div className="mt-auto text-xs text-muted-foreground">
+                    <span className="font-medium text-foreground">{r.name}</span> · Google
+                  </div>
+                </article>
+              ));
+            })()}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-border bg-background px-5 py-3 text-sm font-medium text-foreground hover:bg-secondary"
+            >
+              {t.reviews.seeAll}
+              <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+            </a>
           </div>
         </div>
       </section>
