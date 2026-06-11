@@ -89,6 +89,15 @@ export type Dict = {
     translationNotice: string;
     backHome: string;
   };
+  team: {
+    nailsBeauty: string;
+    therapy: string;
+    beautyTreatments: string;
+  };
+  reviews: {
+    fromGoogle: string;
+    seeAll: string;
+  };
 };
 
 const es: Dict = {
