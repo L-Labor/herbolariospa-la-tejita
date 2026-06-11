@@ -33,10 +33,9 @@ export function LanguageSwitcher({
       segments.unshift(target);
     }
     const nextPath = "/" + segments.join("/");
-    const suffix = (search || "") + (hash ? `#${hash}` : "");
     persistLang(target);
     setOpen(false);
-    router.navigate({ to: nextPath + suffix });
+    router.navigate({ to: nextPath });
   }
 
   return (
