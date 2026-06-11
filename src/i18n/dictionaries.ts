@@ -195,6 +195,15 @@ const es: Dict = {
     translationNotice: "",
     backHome: "Volver al inicio",
   },
+  team: {
+    nailsBeauty: "💅 Uñas y belleza",
+    therapy: "✋ Terapia",
+    beautyTreatments: "🌿 Belleza y tratamientos",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Ver 139 opiniones en Google",
+  },
 };
 
 const en: Dict = {
