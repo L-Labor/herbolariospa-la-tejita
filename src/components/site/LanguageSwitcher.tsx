@@ -14,8 +14,6 @@ export function LanguageSwitcher({
   const ref = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const search = useRouterState({ select: (s) => s.location.searchStr });
-  const hash = useRouterState({ select: (s) => s.location.hash });
 
   useEffect(() => {
     if (!open) return;
