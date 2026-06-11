@@ -1,5 +1,5 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Languages } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { LANGS, LANG_LABEL, LANG_SHORT, persistLang, isLang, type Lang } from "@/i18n";
 
