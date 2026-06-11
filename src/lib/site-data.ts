@@ -350,44 +350,69 @@ export const portfolio = [
 ];
 
 // ---------------- Reviews ----------------
+// Real testimonials from Google Maps (Herbolario Spa La Tejita, 5.0 · 139 reviews).
+// Quotes are exact; do not paraphrase or invent.
 
-export const reviews = [
+export type ReviewLang = "es" | "en";
+
+export type Review = {
+  name: string;
+  lang: ReviewLang;
+  rating: 5;
+  text: string;
+};
+
+export const reviews: Review[] = [
   {
-    name: "Laia P.",
-    date: "2025",
+    name: "ayelen hanna",
+    lang: "es",
     rating: 5,
     text:
-      "Una experiencia maravillosa. Irina es una artista con las uñas: precisión, cuidado y un acabado impecable. Repetiré sin duda.",
+      "Estoy sumamente agradecida con el servicio de Roberto, por su profesionalidad, trato y calidad. Lo recomiendo al 100% para que te hagas un masaje descontracturante y salgas como nuevo.",
   },
   {
-    name: "Marco R.",
-    date: "2025",
+    name: "Cristina Martín",
+    lang: "es",
     rating: 5,
     text:
-      "Massaggio rilassante eccezionale con Roberto. Ambiente curato e professionale, sono uscito completamente rigenerato.",
+      "Masajes, manicuras, pedicuras y otros tratamientos y una gran variedad de productos naturales y la mejor atención. Ponerte en manos de Irina es garantía de las uñas más bonitas y sanas. Recomendable 100%.",
   },
   {
-    name: "Sophie K.",
-    date: "2025",
+    name: "Yurena Concepción",
+    lang: "es",
     rating: 5,
     text:
-      "Lovely facial with Gloria — calm space, attentive care and beautiful natural products. Highly recommended in Tenerife.",
+      "Llevo varios meses haciéndome la manicura y pedicura aquí y no puedo estar más contenta. Me encanta lo minuciosa y detallista que es Irina y la calidad de los productos que utiliza. Salgo siempre con las manos y pies perfectos y me duran intactos muchísimo. Recomendados 100%.",
   },
   {
-    name: "Anna B.",
-    date: "2025",
+    name: "Cristina Lab.",
+    lang: "es",
     rating: 5,
     text:
-      "Perfekte russische Maniküre, sehr sauber und langanhaltend. Das Team ist herzlich und professionell. Sehr empfehlenswert!",
+      "Llevo varios años haciéndome la manicura y pedicura en este salón. Servicio excelente. El equipo es profesional, cuidadoso y detallista. Los resultados duran y el ambiente es agradable. Muy recomendable.",
   },
   {
-    name: "Carmen D.",
-    date: "2024",
+    name: "Miss Teabag",
+    lang: "en",
     rating: 5,
     text:
-      "El mejor centro de bienestar de la zona. Trato cercano, productos naturales y resultados visibles desde la primera sesión.",
+      "She is an expert and really thorough - it is much more than just a beauty treatment. No one else comes close.",
+  },
+  {
+    name: "Milena Zdravkovic",
+    lang: "en",
+    rating: 5,
+    text:
+      "I highly recommend this place! I had both a pedicure with gellac and normal manicure (manicura rusa) done here, and I couldn't be happier with the results.",
+  },
+  {
+    name: "Nina",
+    lang: "en",
+    rating: 5,
+    text: "The best pedicure I have ever had!",
   },
 ];
+
 
 // ---------------- Blog ----------------
 
