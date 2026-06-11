@@ -280,7 +280,7 @@ const en: Dict = {
   },
   common: {
     language: "Language",
-    translationNotice: "Some content is available in Spanish only.",
+    translationNotice: "Extended editorial content is currently available in Spanish. Shop, treatments and checkout remain fully localized.",
     backHome: "Back to home",
   },
 };
