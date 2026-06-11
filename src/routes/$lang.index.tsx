@@ -211,7 +211,7 @@ function Inicio() {
                     <h3 className="text-2xl">{m.name}</h3>
                     <div className="mt-2 inline-flex items-center gap-2 rounded-md bg-secondary px-2.5 py-1 text-[11px] uppercase tracking-widest text-foreground/70">
                       <Icon className="h-3.5 w-3.5 text-accent" strokeWidth={1.6} />
-                      {m.specialty}
+                      {t.team[m.specialtyKey]}
                     </div>
                     <p className="mt-3 text-sm text-muted-foreground">{m.role}</p>
                   </div>
