@@ -513,6 +513,15 @@ const it: Dict = {
     translationNotice: "I contenuti editoriali estesi sono attualmente disponibili in spagnolo. Shop, trattamenti e checkout restano completamente localizzati.",
     backHome: "Torna alla home",
   },
+  team: {
+    nailsBeauty: "💅 Unghie & Bellezza",
+    therapy: "✋ Terapia",
+    beautyTreatments: "🌿 Bellezza & Trattamenti",
+  },
+  reviews: {
+    fromGoogle: "Google ★★★★★",
+    seeAll: "Leggi 139 recensioni su Google",
+  },
 };
 
 export const DICTS: Record<Lang, Dict> = { es, en, de, it };
