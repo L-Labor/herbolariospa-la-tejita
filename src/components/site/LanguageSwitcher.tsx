@@ -52,7 +52,6 @@ export function LanguageSwitcher({
         aria-expanded={open}
         aria-label="Language"
       >
-        <Languages className="h-3.5 w-3.5" strokeWidth={1.6} />
         <span>{LANG_SHORT[currentLang]}</span>
         <ChevronDown className="h-3.5 w-3.5" strokeWidth={1.6} />
       </button>
