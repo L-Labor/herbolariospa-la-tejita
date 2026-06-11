@@ -474,7 +474,7 @@ const it: Dict = {
   },
   common: {
     language: "Lingua",
-    translationNotice: "Alcuni contenuti sono disponibili solo in spagnolo.",
+    translationNotice: "I contenuti editoriali estesi sono attualmente disponibili in spagnolo. Shop, trattamenti e checkout restano completamente localizzati.",
     backHome: "Torna alla home",
   },
 };
