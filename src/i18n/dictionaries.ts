@@ -377,7 +377,7 @@ const de: Dict = {
   },
   common: {
     language: "Sprache",
-    translationNotice: "Einige Inhalte sind nur auf Spanisch verfügbar.",
+    translationNotice: "Ausführliche redaktionelle Inhalte sind derzeit auf Spanisch verfügbar. Shop, Behandlungen und Kasse sind vollständig lokalisiert.",
     backHome: "Zur Startseite",
   },
 };
